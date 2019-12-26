@@ -10,6 +10,6 @@ ffmpeg -threads 2 -loglevel warning -analyzeduration 1000000 -probesize 1000000 
 #start 2nd ffmpeg to put logo with "horse race lamp" into frame
 ffmpeg -threads 2 -thread_queue_size 10k -f rawvideo -pix_fmt yuv420p -s 720x406 -i - -i ffmpeg-logo.png -filter_complex "overlay=x='if(gte(t,0),-w+(mod(n,W+w))+1,NAN)':y=0" -f rawvideo -pix_fmt yuv420p -s 720x406 pipe:1 | \
 #start 3rd ffmpeg to encode and push frame to ffserver
-ffmpeg -thread_queue_size 10k -hwaccel auto -threads 2 -loglevel warning -analyzeduration 1000000 -probesize 1000000 -fflags +igndts -f rawvideo -pix_fmt yuv420p -s 720x406 -r 15 -i - -vcodec libx264 -crf 23 -maxrate 1M -bufsize 2M -movflags +faststart -tune zerolatency -profile:v baseline -s 720x406 -g 60 -r 15 -copytb 1 http://localhost:8090/feed1.ffm
+ffmpeg -thread_queue_size 10k -hwaccel auto -threads 2 -loglevel warning -analyzeduration 1000000 -probesize 1000000 -fflags +igndts -f rawvideo -pix_fmt yuv420p -s 720x406 -r 15 -i - -vcodec libx264 -crf 23 -maxrate 1M -bufsize 2M -movflags +faststart -preset ultrafast -tune zerolatency -profile:v baseline -s 720x406 -g 50 -r 15 -copytb 1 http://localhost:8090/feed1.ffm
 
 #Now run VLC to play rtsp://localhost:5454/test

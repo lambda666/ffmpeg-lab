@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Video Encoding Settings for H.264 Excellence</title>
+<meta name="description" content="Detailed notes regarding the resolutions, bitrates and settings used for high-quality H.264 video encoding, and the reasoning behind those choices.">
+<meta name="keywords" content="video, encoding, compression, resolution, bitrate, settings, options, H.264, H264, AVC, x264, mp4, MPEG-4, MPEG4, MPEG 4">
+<meta name="viewport" content="width=768">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" sizes="192x192" href="http://www.lighterra.com/favicon-192.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="http://www.lighterra.com/favicon-180.jpg">
+<link rel="apple-touch-icon" sizes="152x152" href="http://www.lighterra.com/favicon-152.jpg">
+<link rel="apple-touch-icon" sizes="120x120" href="http://www.lighterra.com/favicon-120.jpg">
+<link rel="apple-touch-icon" sizes="76x76" href="http://www.lighterra.com/favicon-76.jpg">
+
+
+<script>
+// JasonsScripts 4.3 Core. Copyright 1999-2014 Lighterra. All rights reserved.
+(function(){window.lighterra||(window.lighterra={});if(!lighterra.browser||4.3>lighterra.browser.browserDetectVersion){var n=function(){function c(a){var j,h,c,g=a.length;for(j=0;j<g;j++){h=a[j];c=h.b;switch(c){case 1:c=f;break;case 2:c=b;break;case 3:c=e}if(c&&c.indexOf(h.c||h.a)>=0){d=h.f||h.a;return h.a}}return null}function a(a,f){var d=a.indexOf(f);return d>=0?parseFloat(a.substring(d+f.length+1)):0}var d,f=navigator.userAgent,b=navigator.vendor,e=navigator.platform,g=navigator.appVersion,i=[{a:
+"Opera Mini",b:1,f:"Version"},{a:"Opera",b:1,c:"OPR",f:"OPR"},{a:"Opera",b:1,f:"Version"},{a:"OmniWeb",b:1,f:"OmniWeb/"},{a:"iCab",b:2},{a:"Camino",b:2},{a:"Konqueror",b:2,c:"KDE"},{a:"Chrome",b:1},{a:"Android",b:1},{a:"Safari",b:2,c:"Apple",f:"Version"},{a:"Firefox",b:1},{a:"Netscape",b:1},{a:"Internet Explorer",b:1,c:"MSIE",f:"MSIE"},{a:"Internet Explorer",b:1,c:"Trident",f:"rv"},{a:"Mozilla",b:1,c:"Gecko",f:"rv"},{a:"Netscape",b:1,c:"Mozilla",f:"Mozilla"}],k=[{a:"Windows",b:3,c:"Win"},{a:"iOS",b:1,c:
+"like Mac"},{a:"iOS",b:1,c:"iPad"},{a:"iOS",b:1,c:"iPhone"},{a:"iOS",b:1,c:"iPod"},{a:"Mac OS X",b:1},{a:"Mac",b:3},{a:"Android",b:1},{a:"Linux",b:3},{a:"UNIX",b:g,c:"X11"}];this.h=function(){var b,e,h,l;e=c(i)||"Unknown";h=a(f,d)||a(g,d)||1;l=c(k)||"Unknown";b={browserDetectVersion:4.3,name:e,version:h,os:l};b["is"+e.replace(/\s+/g,"")]=h;b["osIs"+l.replace(/\s+/g,"")]=1;if(b.isInternetExplorer)b.isIE=h;else if(f.indexOf("WebKit")>=0){(h=a(f,"WebKit"))||(h=1);b.isWebKit=h}else if(b.isOperaMini)
+b.isOpera=h;if(b.osIsWindows)b.osIsWin=1;else if(b.osIsMacOSX)b.osIsMac=1;return b};return this}.call({});lighterra.browser=n.h()}lighterra.styles=function(){function c(a){var d;if(lighterra.browser.isIE&&document.createStyleSheet){d=document.createStyleSheet();d.cssText=a}else{d=document.createElement("style");d.type="text/css";d.appendChild(document.createTextNode(a));document.getElementsByTagName("head")[0].appendChild(d)}return d}if(!(this.version>=4.1)){this.version=4.1;this.add=c}return this}.call(
+lighterra.styles||{});lighterra.scripts=function(){function c(a){var d=document.createElement("script");d.src=a;a=document.getElementsByTagName("script")[0];return a.parentNode.insertBefore(d,a)}if(!(this.version>=3)){this.version=3;this.load=c}return this}.call(lighterra.scripts||{});lighterra.events=function(){function c(a,d,f){a&&(d&&f)&&(a.addEventListener?a.addEventListener(d,f,!1):a.attachEvent?a.attachEvent("on"+d,a.nodeName&&a.nodeName.toLowerCase()=="img"?function(){return f.call(
+window.event.srcElement,window.event)}:function(){return f.call(a,window.event)}):a["on"+d.toLowerCase()]=f)}if(!(this.version>=4)){this.version=4;this.addListener=c}return this}.call(lighterra.events||{});if(!lighterra.html5||4.3>lighterra.html5.version){var o=function(){var c=[{d:["abbr"],e:[7,0,0,0,0]},{d:["article","aside","figcaption","figure","footer","header","hgroup","nav","section"],g:!0,e:[9,4,6,5,11.5]},{d:["audio","video"],g:!0,e:[9,3.5,4,4,11.5]},{d:["bdi","bdo"],e:[99,10,16,99,99]},{d:[
+"canvas"],g:!0,e:[9,2,4,3.2,10]},{d:["details"],g:!0,e:[99,99,12,6,22]},{d:["main"],g:!0,e:[99,21,26,7,22]},{d:["mark","time"],e:[9,4,6,5,11.5]},{d:["meter"],e:[99,16,8,99,11.5]},{d:["output"],e:[99,4,10,7,11]},{d:["progress"],e:[10,6,8,7,11.5]},{d:["rp","rt","ruby"],e:[5.5,99,5,5,22]},{d:["summary"],e:[99,99,12,6,22]}];this.h=function(){var a=lighterra.browser,d=a.version,f,b,e,g,i,k,m=a.isIE&&a.isIE<9,j="",a=a.isIE?0:a.isFirefox?1:a.isChrome?2:a.isSafari?3:a.isOpera?4:-1;b=c.length;for(f=0;f<b;f++)if(
+a<0||d<c[f].e[a]){e=c[f].d;g=c[f].g;k=e.length;for(i=0;i<k;i++){m&&document.createElement(e[i]);if(g){j&&(j=j+",");j=j+e[i]}}}j&&lighterra.styles.add(j+"{display:block}");return{version:4.3}};return this}.call({});lighterra.html5=o.h()}lighterra.srcset=function(){function c(a,b){if(d&&a){if(!b){b=a.srcset||a.getAttribute("srcset");if(!b)return}a.src=b.split(" ")[0];a.srcset=b;a.setAttribute("srcset",b)}}function a(){if(d){var a=document.getElementsByTagName("img"),b=a.length,e,g,i;for(e=0;e<b;e++){g=a[e]
+;(i=g.srcset||g.getAttribute("srcset"))&&c(g,i)}}}var d=window.devicePixelRatio>1&&!("srcset"in new Image);if(!(this.version>=4)){this.version=4;this.apply=c;this.applyToAll=a;d&&document.addEventListener("DOMContentLoaded",a,!1)}return this}.call(lighterra.srcset||{});lighterra.rollovers=function(){function c(){var d=document.getElementsByTagName("img"),c=d.length,b,e,g;for(b=0;b<c;b++){e=d[b];if(g=e.getAttribute("data-oversrc")){e.dataOverSrc=g;e.dataOverSrcset=e.getAttribute("data-oversrcset");g=e;
+var i=new Image,k=void 0;i.src=g.dataOverSrc;if(k=g.dataOverSrcset){i.srcset=k;lighterra.srcset.apply(i,k)}g.dataOverImage=i;e.onmouseover=e.onmouseout=a}}}function a(){var a=this.src,c=this.srcset,b;if(this.style&&(b=this.style.filter))if(b=b.replace(/.*AlphaImageLoader\(src="([^"][^"]*)".*/,"$1")){a=b;this.style.filter=""}this.src=this.dataOverSrc;if(b=this.dataOverSrcset){this.srcset=b;lighterra.srcset.apply(this,b)}this.dataOverSrc=a;this.dataOverSrcset=c;this.setAttribute("data-oversrc",a);
+this.setAttribute("data-oversrcset",c)}if(!(this.version>=4.2)){this.version=4.2;!lighterra.browser.osIsiOS&&!lighterra.browser.osIsAndroid&&lighterra.events.addListener(window,"load",c)}return this}.call(lighterra.rollovers||{});})();
+</script><style type="text/css">details{display:block}</style>
+
+
+<style>
+html, body { background: #003; padding: 0; margin: 0; }
+body { min-width: 768px; max-width: 1000px; margin: 0 auto; font-size: 62.5%; font-family: Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; }
+@media only screen and (max-device-width: 1024px) {
+	html, body { background: #FFF; }
+	body { max-width: 1024px; }
+	@media only screen and (orientation: landscape) {
+		body, #navbar { min-width: 1024px; max-width: 1024px; }
+		body { font-size: 75%; }
+	}
+}
+@media only screen and (max-device-width: 599px) {
+	body { font-size: 125%; -webkit-text-size-adjust: none; }
+}
+@media print {
+	html, body { background: #FFF; }
+	body { min-width: 850px; }
+}
+
+nav, article, header, hgroup, figure, figcaption, aside, section, footer { display: block; margin: 0; }
+
+h1, h2, h3, h4, h5, h6, dt { font-family: Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; font-style: italic; page-break-inside: avoid; page-break-after: avoid; }
+h1 { font-size: 40px; color: #FFF; text-shadow: 3px 3px 8px #000; }
+h2, h3, h4, h5, h6, dt { color: #007; text-shadow: 0.17em 0.17em 0.4em #AAA; margin-top: 1.2em; margin-bottom: 0.7em; }
+h2 { font-size: 1.9em; margin-top: 2em; }
+h3 { font-size: 1.7em; }
+h4 { font-size: 1.5em; }
+h5, h6 { font-size: 1.3em; }
+h1, h2, h3 { text-rendering: optimizeLegibility; }
+h5, h6, dt { font-weight: bold; text-shadow: 0.13em 0.13em 0.25em #AAA; margin-top: 1em; margin-bottom: 0.5em; }
+@media only screen and (max-device-width: 599px) {
+	h2 { font-size: 1.6em; }
+	h3 { font-size: 1.5em; }
+	h4 { font-size: 1.4em; }
+}
+
+p, ol, ul, dl, th, td { font-size: 1.3em; color: #000; }
+ol ol, ol ul, ul ol, ul ul, dl ol, dl ul, dl dl, dl th, dl td, td p, td ol, td ul, td dl, td td, td th { font-size: 100%; }
+li { page-break-inside: avoid; }
+dd { margin-left: 1.6em; }
+
+sup, sub { font-size: 50%; }
+
+a { color: #08F; text-decoration: none; outline: none; }
+a:visited { color: #06C; }
+a:hover, a:focus { text-decoration: underline; }
+a:active { color: #4BF; }
+h1 a, #title a { color: #FFF; text-decoration: none; }
+h1 a:active, #title a:active { color: #EEF; }
+.sidebarleft a, .sidebarright a, .messagebox a { color: #08F; }
+@media print {
+	a:visited { color: #08F; }
+}
+
+@font-face { font-family: Consolas; src: local("Consolas"), local("Consolas-Regular"), url(../../shared/fonts/consolas-subset-5.00.woff) format("woff"); }
+@font-face { font-family: Consolas; font-weight: bold; src: local("Consolas Bold"), local("Consolas-Bold"), url(../../shared/fonts/consolas-bold-5.00.woff) format("woff"); }
+@font-face { font-family: Consolas; font-style: italic; src: local("Consolas Italic"), local("Consolas-Italic"), url(../../shared/fonts/consolas-italic-5.00.woff) format("woff"); }
+@font-face { font-family: Consolas; font-weight: bold; font-style: italic; src: local("Consolas Bold Italic"), local("Consolas-Bold-Italic"), url(../../shared/fonts/consolas-bold-italic-5.00.woff) format("woff"); }
+pre, code, kbd, samp { font-family: Consolas, monospace; }
+pre { font-size: 1.2em; color: #0EE; background: #003; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1.3; padding: 1.5em 2em; border-radius: 0.4em; -moz-border-radius: 0.4em; -webkit-border-radius: 0.4em; margin-left: 2em; margin-right: 2em; overflow-x: auto; overflow-y: auto; page-break-inside: avoid; }
+code, kbd, samp { line-height: 0; white-space: pre-wrap; }
+@media only screen and (max-device-width: 599px) {
+	pre { padding: 1em; margin-left: 0; margin-right: 0; }
+}
+@media print {
+	pre { color: #000; background: #FFF; }
+}
+
+img { display: block; border: 0; page-break-inside: avoid; }
+a:active img { position: relative; top: 1px; }
+#navbar a:active img, #subnavbar a:active img { top: 0; }
+
+table { font-size: inherit; border-collapse: collapse; page-break-inside: avoid; }
+table, th, tr, td { border: 0; border-spacing: 0; }
+
+blockquote { font: 1.7em FreeSerif, "Times New Roman", Times, "Liberation Serif", serif; font-style: italic; page-break-inside: avoid; }
+@media only screen and (max-device-width: 599px) {
+	blockquote { font-size: 1.4em; }
+}
+
+hr { background: url(../../shared/curvedheader/sprite3.png) 0 -248px no-repeat; width: 512px; height: 1px; border: 0; margin: 3em auto; }
+
+form ol, form ul { list-style: none; padding: 0; margin: 0; }
+input, textarea, select, button { font-size: 100%; font-family: Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; }
+input[type=checkbox], input[type=radio] { vertical-align: middle; position: relative; bottom: 1px; }
+input[type=radio] { bottom: 2px; }
+
+meter, progress { color: #3CF; }
+
+.heading { font-family: Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; font-weight: bold; font-style: italic; color: #007; }
+
+.major { font-size: 108%; }
+.minor { font-size: 92%; }
+p.major { font-size: 1.4em; }
+p.minor { font-size: 1.2em; }
+h2 .minor, h3 .minor { font-size: 75%; }
+@media only screen and (max-device-width: 599px) {
+	.major { font-size: 104%; }
+	p.major { font-size: 1.35em; }
+}
+
+a .link { color: #29F; }
+a:visited .link { color: #06C; }
+a .link:hover { text-decoration: underline; }
+a .link:active { color: #4BF; }
+
+.fineprint { font: 1.1em Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; }
+
+.nowrap { white-space: nowrap; }
+.clear { clear: both; }
+
+.mainbody { margin: 0 12%; }
+.mainbodycol1 { float: left; width: 48%; padding-top: 1px; }
+.mainbodycol2 { margin-left: 52%; padding-top: 1px; }
+@media only screen and (max-width: 949px) {
+	.mainbody { margin: 0 8%; }
+}
+@media only screen and (max-width: 899px) {
+	.mainbody { margin: 0 4%; }
+}
+@media only screen and (max-width: 849px) {
+	.mainbody { margin: 0 2%; }
+}
+@media only screen and (max-width: 849px) and (orientation: landscape) {
+	.mainbody { margin: 0 4.4%; }
+}
+@media only screen and (max-device-width: 599px) {
+	.mainbody { margin: 0 -3%; }
+	.mainbodycol1, .mainbodycol2 { float: none; width: 100%; margin-left: 0; padding-top: 0; }
+}
+@media print {
+	.mainbody { margin: 0 4%; }
+}
+
+.quote { font: 1.7em FreeSerif, "Times New Roman", Times, "Liberation Serif", serif; font-style: italic; color: #333; text-align: right; margin: 0 0 0.5em 0; page-break-inside: avoid; page-break-after: avoid; }
+.quoteauthor { font-size: 1.2em; color: #333; text-align: right; margin: 0 0 1em 0; page-break-inside: avoid; page-break-after: avoid; }
+@media only screen and (max-device-width: 599px) {
+	.quote { font-size: 1.4em; }
+	.quoteauthor { font-size: 1.1em; }
+}
+
+.author { font: 1.1em Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; font-weight: bold; color: #AAA; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin-bottom: 1.8em; }
+.author a, .author a:visited { color: #AAA; }
+.author a:active { color: #0CF; }
+
+.tocbutton { font-size: 1.1em; float: right; margin: 1em 0 1em 1em; }
+.toc h2, .toc li { margin-top: 0; }
+.toc ol { padding-left: 3em; }
+
+.foldout { height: 0; max-height: 0; opacity: 0; visibility: hidden; overflow: hidden; }
+
+.codekeyword { color: #4D8FFF; }
+.codetype { color: #4EB4D2; }
+.codeliteral { color: #14B9FF; }
+.codestring { color: #14B9FF; }
+.codecomment { color: #3DFF9D; font-style: italic; }
+@media print {
+	.codekeyword { color: #0000E0; }
+	.codetype { color: #31849B; }
+	.codeliteral { color: #000; }
+	.codestring { color: #0090D0; }
+	.codecomment { color: #00A000; }
+}
+
+.photo, .diagram { margin: 0 auto; }
+.photo { box-shadow: 3px 3px 5px #999; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; }
+.caption { font: 1.1em Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; font-weight: bold; text-align: center; margin: 0.54em 0 0 0; page-break-before: avoid; page-break-inside: avoid; }
+@media only screen and (max-device-width: 599px) {
+	.caption { font-size: 1em; }
+}
+
+.arealeft { clear: both; float: left; margin: 0 20px 12px 0; }
+.arearight { clear: both; float: right; margin: 0 0 12px 15px; }
+.arealeft img, .arearight img { margin-top: 7px; }
+
+.sidebarleft, .sidebarright { clear: both; width: 30%; padding: 0 15px; box-shadow: 3px 3px 5px #999; -moz-box-shadow: 3px 3px 5px #999; -webkit-box-shadow: 3px 3px 5px #999; }
+.sidebarleft { float: left; margin: 0 20px 12px 0; background: #D7FFFA; border: 1px solid #80EADC; }
+.sidebarright { float: right; margin: 0 0 12px 15px; background: #CCF6FF; border: 1px solid #0DF; }
+.sidebarleft p, .sidebarright p { font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; }
+@media only screen and (max-device-width: 599px) {
+	.sidebarleft, .sidebarright { float: none; width: 93%; padding: 0 25px; margin: 0 auto; }
+}
+
+.messagebox { width: 66%; padding: 14px 20px 7px 20px; background: #CCF6FF; border: 1px solid #0DF; box-shadow: 3px 3px 8px #999; -moz-box-shadow: 3px 3px 8px #999; -webkit-box-shadow: 3px 3px 8px #999; margin: 40px auto; page-break-inside: avoid; }
+.messagebox h2 { text-shadow: none; margin: 0; }
+@media only screen and (max-device-width: 599px) {
+	.messagebox { width: 95%; }
+}
+
+#page, #background, #bgoverlay { width: 100%; }
+#page { background: #FFF; }
+
+#navbarbg1, #navbarbg2 { position: absolute; left: 0; top: 0; background: #003; }
+#navbarbg1 { width: 100%; height: 52px; }
+#navbarbg2 { width: 285px; height: 74px; }
+#navbarbg3 { background: url(../../shared/curvedheader/sprite3.png) 0 -2px no-repeat; float: left; width: 767px; height: 90px; }
+#navbarbg4 { background: url(../../shared/curvedheader/sprite3.png) 0 -98px repeat-x; margin-left: 767px; height: 90px; }
+#navbar { position: absolute; left: auto; top: 0; width: 100%; max-width: 1000px; height: 90px; overflow: hidden; }
+#navbar table { width: 100%; padding: 0; margin: 12px 0 0 0; }
+#navbar tr, #navbar td, #subnavbar tr, #subnavbar td { vertical-align: top; padding: 0; margin: 0; }
+#navbar #navbarlogocell { padding: 0 0 0 12px; }
+#navbarlighterra { background: url(../../shared/curvedheader/sprite3.png) -2px -192px no-repeat; }
+#navbarabout { background: url(../../shared/curvedheader/sprite3.png) -270px -192px no-repeat; }
+#navbarsoftware { background: url(../../shared/curvedheader/sprite3.png) -378px -192px no-repeat; }
+#navbararticles { background: url(../../shared/curvedheader/sprite3.png) -516px -192px no-repeat; }
+#navbarsearch { background: url(../../shared/curvedheader/sprite3.png) -647px -192px no-repeat; }
+
+#content { width: 88%; margin: 0 6%; min-height: 560px; }
+#title { margin: 30px 0 100px 70px; }
+
+#breadcrumbs { width: 100%; text-align: center; padding-top: 2em; page-break-inside: avoid; }
+#breadcrumbs p { font: 1.1em Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; color: #AAA; margin: 0 3%; }
+#breadcrumbs a, #breadcrumbs a:visited { color: #AAA; }
+#breadcrumbs a:active { color: #0CF; }
+
+#footerbg { background: url(../../shared/curvedheader/sprite3.png) 0 -253px repeat-x; width: 100%; height: 20px; }
+#footer { width: 100%; background: #003; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; padding: 1em 0; font-family: Arial, Helvetica, "Liberation Sans", FreeSans, sans-serif; page-break-inside: avoid; }
+#footercol1 { float: left; width: 30.5%; margin: 0 1.5% 0 6%; padding-top: 1px; }
+#footercol2 { float: left; width: 25%; margin: 0 2%; padding-top: 1px; }
+#footercol3 { margin: 0 6% 0 67%; padding-top: 1px; }
+#footer h6 { font-size: 1.5em; color: #1FEBFF; text-shadow: none; margin: 9px 0; }
+#footer p { font-size: 1.3em; color: #AAA; margin: 0.7em 0; }
+#footer ul { list-style: none; font-size: 1.3em; padding: 0; margin: 0; }
+#footer li { margin: 0.5em 0 0 0; }
+#footer a, #footer a:visited { color: #AAA; }
+#footer a:hover { color: #CCC; }
+#footer a:active { color: #0CF; }
+#footer h6 a, #footer h6 a:visited, #footer h6 a:hover { color: #1FEBFF; }
+#footer h6 a:active { color: #2FF; }
+#footercol1 p a { color: #BBB; }
+#footercol1 img { float: left; margin: 4px 10px 5px 0; }
+#footer hr { background: url(../../shared/curvedheader/sprite3.png) 0 -251px no-repeat; margin: 1.5em auto 1em auto; }
+#footer .copyright { font: 1.1em Verdana, "DejaVu Sans", "Bitstream Vera Sans", sans-serif; text-align: center; }
+#footer .copyright a, #footer .copyright a:visited { color: #AAA; }
+#footer .copyright a:active { color: #0CF; }
+@media only screen and (max-device-width: 599px) {
+	#footercol1, #footercol2, #footercol3 { float: none; width: 90%; margin: 0 5% 0.7em 5%; }
+	#footercol1 img { width: 85px; height: 85px; margin: 14px 24px 10px 0; }
+	#footer p { font-size: 1.38em; }
+	#footer li { margin-left: 1em; }
+}
+@media print {
+	#footerbg { height: 0; }
+	#footer { background: #FFF; }
+	#footercol1, #footercol2, #footercol3 { height: 0; visibility: hidden; overflow: hidden; }
+	#footer hr { margin-top: 0; }
+}
+</style>
+
+
+<script>
+(function() {
+var b = lighterra.browser, s = lighterra.styles;
+if (b.isSafari) { s.add("\
+h2, h3, h4 { text-shadow: 0.17em 0.17em 0.3em #999; }\
+"); } else if (b.isFirefox && b.osIsWin) { s.add("\
+h2, h3, h4 { text-shadow: 0.17em 0.17em 0.3em #BBB; }\
+h5, h6, dt { text-shadow: 0.13em 0.13em 0.25em #BBB; }\
+"); } else if (b.isFirefox && b.osIsMac) { s.add("\
+h2, h3, h4 { text-shadow: 0.17em 0.17em 0.25em #999; }\
+h5, h6, dt { text-shadow: 0.13em 0.13em 0.15em #BBB; }\
+"); } else if (b.isIE) { s.add("\
+h2, h3, h4, h5, h6, dt { text-shadow: 0.13em 0.13em 0.25em #CCC; }\
+code, kbd, samp { word-wrap: break-word; }\
+"); } else if (b.isOperaMini) { s.add("\
+h2, h3, h4, h5, h6, dt { text-shadow: none; }\
+pre, code, kbd, samp { font-family: Courier, monospace; }\
+"); }
+})();
+</script>
+
+
+<script>
+// JasonsScripts 4.0 Foldout. Copyright 1999-2012 Lighterra. All rights reserved.
+(function(){lighterra.styles=function(){function g(a){var b=lighterra.browser,c,d,e,f;a&&!a.nodeName&&(a=document.getElementById(a));if(a){c=a.style;a="hidden"==c.visibility?!0:"visible"==c.visibility?!1:0==a.offsetHeight;b.isIE&&7>b.isIE&&(c.display=a?"block":"none");if(!b.isIE||10<=b.isIE){d="all";if(a&&(b.osIsiOS||b.osIsAndroid))d="opacity";d+=a?" 2s":" 0.5s";e=["t","WebkitT","MozT","OT"];f=e.length;for(b=0;b<f;b++)c[e[b]+"ransition"]=d}c.overflow="hidden";c.height="auto";c.visibility=a?"visible":
+"hidden";c.maxHeight=a?"2000px":"0";c.opacity=a?"1":"0"}}this.foldout&&3<=this.version||(this.foldout=g);return this}.call(lighterra.styles||{});})();
+</script>
+
+
+<style>
+#background { background: url(../../shared/backgrounds/videowall.jpg) 0 50px no-repeat; }
+#title { font-size: 36px; margin-bottom: 90px; }
+li { margin-top: 0.8em; }
+.datatable { margin: 2.5em auto; border: 1px solid #007; border-collapse: collapse; border-spacing: 0; box-shadow: 3px 3px 8px #999; -moz-box-shadow: 3px 3px 8px #999; -webkit-box-shadow: 3px 3px 8px #999; }
+.datatable td { font-size: 1.1em; color: #000; text-align: right; padding: 0.3em 3em 0.3em 2.5em; }
+.datatable .heading { background: #3ABDD9; border: 1px solid #007; }
+.datatable .heading th { font-size: 1.1em; color: #004; text-align: center; padding: 0.6em; }
+.datatable .rowa { background: #D6EFF4; }
+.datatable .rowb { background: #AEDEEA; }
+.resbitratetable .namecol { text-align: left; padding-left: 2em; padding-right: 1em; white-space: nowrap; }
+.resbitratetable .rescol { padding-left: 1em; padding-right: 1em; }
+#percentageoflinkspeed img { width: 397px; height: 252px; margin: 3px 0 3px 5px; }
+#otherproviderstable .providercol { text-align: left; padding-left: 2em; padding-right: 1em; white-space: nowrap; border-right: 1px solid #007; }
+#otherproviderstable .ourbitraterow { background: #3ABDD9; border: 1px solid #007; }
+#otherproviderstable .ourbitraterow td { font-weight: bold; }
+#usvsotherproviders img { width: 559px; height: 290px; }
+h2 .option { font-size: 75%; }
+.option { white-space: nowrap; }
+p .heading { color: #00C; }
+@media only screen and (max-width: 849px) and (orientation: landscape) {
+	#percentageoflinkspeed img { width: 476px; height: 302px; }
+	#usvsotherproviders img { width: 671px; height: 348px; }
+}
+@media only screen and (max-device-width: 599px) {
+	.datatable { font-size: 65%; }
+	#percentageoflinkspeed { float: none; margin: 2em 0; }
+	#percentageoflinkspeed img, #usvsotherproviders img { width: 100%; height: auto; margin: 0; }
+}
+</style>
+
+
+</head>
+<body>
+<div id="page">
+	<div id="background">
+		<div id="bgoverlay">
+			<div id="navbarbg1"></div>
+			<div id="navbarbg2"></div>
+			<div id="navbarbg3"></div>
+			<div id="navbarbg4"></div>
+			<nav><div id="navbar">
+				<table>
+					<tbody><tr>
+						<td id="navbarlogocell"><a href="http://www.lighterra.com/"><img id="navbarlighterra" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/blank.gif" srcset="/shared/lighterra/lighterra3_2x.png 2x" data-oversrc="/shared/lighterra/lighterra3_o.png" data-oversrcset="/shared/lighterra/lighterra3_o_2x.png 2x" alt="Lighterra" title="Back to the Lighterra home page" width="266" height="53"></a></td>
+						<td><a href="http://www.lighterra.com/jason/"><img id="navbarabout" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/blank.gif" data-oversrc="/shared/volumetric/small/about3_o.gif" alt="About" width="106" height="26"></a></td>
+						<td><a href="http://www.lighterra.com/software/"><img id="navbarsoftware" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/blank.gif" data-oversrc="http://www.lighterra.com/shared/volumetric/small/software3_o.gif" alt="Software" data-oversrcset="" width="136" height="26"></a></td>
+						<td><a href="http://www.lighterra.com/articles/"><img id="navbararticles" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/blank.gif" data-oversrc="/shared/volumetric/small/articles3_o.gif" alt="Articles" width="129" height="26"></a></td>
+						<td><a href="http://www.lighterra.com/search/"><img id="navbarsearch" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/blank.gif" data-oversrc="/shared/volumetric/small/search3_o.gif" alt="Search" width="119" height="26"></a></td>
+					</tr>
+				</tbody></table>
+			</div></nav>
+			
+			
+			<article><div id="content">
+				<header>
+					<h1 id="title">Video Encoding Settings<br>
+					for H.264 Excellence</h1>
+					<div class="mainbody">
+						<p class="quote">Quality is not an act, it is a habit.</p>
+						<p class="quoteauthor">— Aristotle</p>
+						<button class="tocbutton" type="button" onclick="window.lighterra.styles.foldout('toc');">Table of Contents</button>
+						<p class="author">by <a href="http://www.lighterra.com/jason/">Jason Robert Carey Patterson</a>, Apr 2012</p>
+					</div>
+				</header>
+				<div class="mainbody">
+					<nav><div id="toc" class="toc foldout clear">
+						<h2>Table of Contents</h2>
+						<ol>
+							<li><a href="#resolutionsandbitrates">Resolutions &amp; Bitrates</a></li>
+							<li><a href="#encodersoftware">Encoder Software - x264</a></li>
+							<li><a href="#encodingstrategyandpasses">Encoding Strategy &amp; Passes</a></li>
+							<li><a href="#h264profile">H.264 Profile</a></li>
+							<li><a href="#h264profileimplied">H.264 Profile-Implied</a></li>
+							<li><a href="#h264level">H.264 Level</a></li>
+							<li><a href="#peakbitrate">Peak Bitrate</a></li>
+							<li><a href="#quantizercurvecompression">Quantizer-Curve Compression</a></li>
+							<li><a href="#minimumquantization">Minimum Quantization</a></li>
+							<li><a href="#permacroblockbitratecontrollookahead">Per-Macroblock Bitrate-Control Lookahead</a></li>
+							<li><a href="#scenechangedetection">Scene-Change Detection</a></li>
+							<li><a href="#maximumkeyframeinterval">Maximum Keyframe Interval</a></li>
+							<li><a href="#minimumkeyframeinterval">Minimum Keyframe Interval</a></li>
+							<li><a href="#motionestimationsearchpattern">Motion-Estimation Search Pattern</a></li>
+							<li><a href="#motionestimationsearchrange">Motion-Estimation Search Range</a></li>
+							<li><a href="#subpixelmotionvectorrefinement">Sub-Pixel Motion-Vector Refinement</a></li>
+							<li><a href="#predictedmotionvectors">Predicted Motion Vectors</a></li>
+							<li><a href="#numberofreferenceframes">Number of Reference Frames</a></li>
+							<li><a href="#bframesasreferenceframes">B-Frames as Reference Frames</a></li>
+							<li><a href="#pframeearlyskipdetection">P-Frame Early Skip Detection</a></li>
+							<li><a href="#adaptivenumberofbframes">Adaptive Number of B-Frames</a></li>
+							<li><a href="#maximumnumberofbframes">Maximum Number of B-Frames</a></li>
+							<li><a href="#ratedistortionoptimization">Rate-Distortion Optimization (Trellis)</a></li>
+							<li><a href="#psychovisualoptimization">Psycho-Visual Optimization</a></li>
+							<li><a href="#dctbaseddecimation">DCT-Based Decimation</a></li>
+							<li><a href="#_4x4partitionsinpframes">4x4 Partitions in P-Frames</a></li>
+							<li><a href="#deblocking">Deblocking</a></li>
+							<li><a href="#colorspacetagging">Colorspace Tagging</a></li>
+						</ol>
+						<hr>
+					</div></nav>
+					<p>This document describes in detail a set of resolutions, bitrates and settings used for high-quality <a href="http://en.wikipedia.org/wiki/H.264/MPEG-4_AVC">H.264</a>
+ video encoding, and the reasoning behind those choices. Video encoding 
+is a game of tradeoffs, and these settings represent a balance which is 
+very good, and difficult to improve upon.</p>
+					<p>Familiarity with basic <a href="http://www.vcodex.com/introduction.asp">video-encoding terms and technology</a> is assumed when reading this document, and an understanding of the <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470516925.html">nitty-gritty details</a> might also be helpful.</p>
+					<p><strong>UPDATE:</strong> While you're strongly encouraged to 
+actually read this article and learn about the various settings and 
+tradeoffs, many people just want to download the settings. With that in 
+mind, you can download <a class="nowrap" href="http://www.lighterra.com/papers/videoencodingh264/VideoEncoderSettings-201904.zip">VideoEncoderSettings-201904.zip</a>
+ which has the article's settings in a form suitable for importing into 
+HandBrake with x264, which we currently use, as well as Compressor with 
+x264Encoder, which we used back in 2012 when this article was first 
+written.</p>
+					<h2><a id="resolutionsandbitrates"></a>Resolutions &amp; Bitrates</h2>
+					<p>We provide video files at <strong>7 different standard widescreen resolutions...</strong></p>
+					<ul>
+						<li><strong>240p</strong> (424x240, 0.10 megapixels)</li>
+						<li><strong>360p</strong> (640x360, 0.23 megapixels)</li>
+						<li><strong>432p</strong> (768x432, 0.33 megapixels)</li>
+						<li><strong>480p</strong> (848x480, 0.41 megapixels, "SD" or <span class="nowrap">"NTSC widescreen")</span></li>
+						<li><strong>576p</strong> (1024x576, 0.59 megapixels, <span class="nowrap">"PAL widescreen")</span></li>
+						<li><strong>720p</strong> (1280x720, 0.92 megapixels, "HD")</li>
+						<li><strong>1080p</strong> (1920x1080, 2.07 megapixels, <span class="nowrap">"Full HD")</span></li>
+					</ul>
+					<p>Encoding at such a wide range of resolutions is based on the 
+assumption a web video embedding mechanism will be used that is capable 
+of detecting the viewer's Internet connection speed and choosing the 
+appropriate video file based on that link speed, along with the screen 
+size and playback capabilities of the browser –&nbsp;thus supplying each
+ different viewer with the best resolution and bitrate he/she can use. 
+Simpler video embedding may also be used, of course, right down to a 
+basic HTML5 <code>&lt;video&gt;</code> tag pointing to a single version 
+of the video, but the whole point of encoding at a variety of 
+resolutions and bitrates is intended for an intelligent embedding 
+mechanism to make sensible use of those many different versions, 
+supplying high-quality HD video to those viewers with fast enough 
+Internet links, while falling back gradually for viewers with 
+increasingly slower links.</p>
+					<p>For each resolution, we use a <strong>bitrate which is the lowest sensible 64% cut</strong> (80% of 80%) of a common Internet link speed (see below) <strong>that still achieves "very good" visual quality</strong>,
+ with no major visible compression artifacts. Just like saving a still 
+image for use on a web site, we put quality first and only compress as 
+much as possible without introducing any noticeable degradation 
+(hopefully). If that means using a higher bitrate for a given resolution
+ than some other web sites, then so be it –&nbsp;the 'net can take it, 
+and bandwidth is less and less of a problem every day. It's unwise to 
+push bitrates too low and risk delivering a blurry, unprofessional 
+video, which other sites such as <a href="http://www.youtube.com/">YouTube</a> routinely do.</p>
+					<p>For most of the resolutions we <strong>also provide a higher quality (HQ) version encoded at a somewhat higher bitrate</strong>,
+ for the benefit of users with sufficiently fast Internet links. The 
+visual differences from the normal, "very good" quality version to the 
+HQ version are generally quite small, such as less blur during rapid 
+motion, less risk of banding in dark scenes, and less risk of 
+crystallizing during difficult fades. Nonetheless, we might as well take
+ advantage of the user's link speed for improved quality from fewer 
+compression artifacts, assuming the user's link is not fast enough to 
+get up to the next higher resolution, which would be a significant step 
+up in general sharpness and clarity.</p>
+					<p>Finally, we <strong>also encode a "superbit", ultimate-quality version</strong> at full HD 1080p resolution using a very high bitrate similar to <a href="http://en.wikipedia.org/wiki/Blu-ray_Disc" class="nowrap">Blu-ray</a>. The bitrate chosen is <span class="nowrap">20 Mbps,</span>
+ which is a safe 80% of the maximum peak bitrate allowed for H.264 level
+ 4.0. The superbit version should be almost lossless, practically 
+indistinguishable from the original master – a "transparent" encoding, 
+as it's known. It acts both as the best local playback (non-web) version
+ and as a long-term master for future transcoding (eg: YouTube uploads, 
+burning to <span class="nowrap">DVD/Blu-ray,</span> re-encoding with future codecs etc).</p>
+					<p>Audio is encoded at <span class="nowrap">44.1 kHz</span> in <a href="http://en.wikipedia.org/wiki/Advanced_Audio_Coding">AAC</a> format, mono at <span class="nowrap">64 kbps</span> or stereo at <span class="nowrap">128 kbps,</span> both of which are excellent quality, practically indistinguishable from the original master. The lower resolutions all use <strong>identical audio settings to allow switching cleanly between them</strong> in an <a href="http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming">adaptive streaming</a> scenario without any audible "pops". The <span class="nowrap">128-kbps</span>
+ versions are a stereo equivalent of the same settings. Switching from 
+mono to stereo with the same settings should be almost seamless, and 
+should only happen once in most cases, since a user is unlikely to need 
+to switch back down if their link is ever over <span class="nowrap">5 Mbps</span> (making that changeover at a lower speed, such as 3 or <span class="nowrap">4 Mbps,</span>
+ would be more problematic –&nbsp;the faster the link, the more likely 
+it is to be well above what we need). The superbit, ultimate-quality 
+version uses the maximum possible AAC bitrate
+					of <span class="nowrap">320 kbps</span> since it acts as a long-term master and we want the minimum possible quality loss if we have to re-encode from it (although <span class="nowrap">256 kbps</span> would be sufficient and is considered effectively lossless for later re-encoding purposes).</p>
+					<p>The exact bitrates chosen are...</p>
+					<table class="datatable resbitratetable">
+						<tbody><tr class="heading">
+							<th class="namecol">Name</th>
+							<th class="rescol">Resolution</th>
+							<th>Link<br>
+							(Mbps)</th>
+							<th>Bitrate<br>
+							(Mbps)</th>
+							<th>Video<br>
+							(kbps)</th>
+							<th>Audio<br>
+							(kbps)</th>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">240p</td>
+							<td class="rescol">424x240</td>
+							<td>1.0</td>
+							<td>0.64</td>
+							<td>576</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">360p</td>
+							<td class="rescol">640x360</td>
+							<td>1.5</td>
+							<td>0.96</td>
+							<td>896</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">432p</td>
+							<td class="rescol">768x432</td>
+							<td>1.8</td>
+							<td>1.15</td>
+							<td>1088</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">480p</td>
+							<td class="rescol">848x480</td>
+							<td>2.0</td>
+							<td>1.28</td>
+							<td>1216</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">480p HQ</td>
+							<td class="rescol">848x480</td>
+							<td>2.5</td>
+							<td>1.60</td>
+							<td>1536</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">576p</td>
+							<td class="rescol">1024x576</td>
+							<td>3.0</td>
+							<td>1.92</td>
+							<td>1856</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">576p HQ</td>
+							<td class="rescol">1024x576</td>
+							<td>3.5</td>
+							<td>2.24</td>
+							<td>2176</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">720p</td>
+							<td class="rescol">1280x720</td>
+							<td>4.0</td>
+							<td>2.56</td>
+							<td>2496</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">720p HQ</td>
+							<td class="rescol">1280x720</td>
+							<td>5.0</td>
+							<td>3.20</td>
+							<td>3072</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">1080p</td>
+							<td class="rescol">1920x1080</td>
+							<td>8.0</td>
+							<td>5.12</td>
+							<td>4992</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">1080p HQ</td>
+							<td class="rescol">1920x1080</td>
+							<td>12.0</td>
+							<td>7.68</td>
+							<td>7552</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">1080p Superbit</td>
+							<td class="rescol">1920x1080</td>
+							<td>N/A</td>
+							<td>20.32</td>
+							<td>20000</td>
+							<td>320</td>
+						</tr>
+					</tbody></table>
+					<p>...and for older, non-widescreen content (with only 75% as many pixels)...</p>
+					<table class="datatable resbitratetable">
+						<tbody><tr class="heading">
+							<th class="namecol">Name</th>
+							<th class="rescol">Resolution</th>
+							<th>Link<br>
+							(Mbps)</th>
+							<th>Bitrate<br>
+							(Mbps)</th>
+							<th>Video<br>
+							(kbps)</th>
+							<th>Audio<br>
+							(kbps)</th>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">240p</td>
+							<td class="rescol">320x240</td>
+							<td>1.0</td>
+							<td>0.64</td>
+							<td>576</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">360p</td>
+							<td class="rescol">480x360</td>
+							<td>1.2</td>
+							<td>0.77</td>
+							<td>704</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">480p</td>
+							<td class="rescol">640x480</td>
+							<td>1.5</td>
+							<td>0.96</td>
+							<td>896</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">480p HQ</td>
+							<td class="rescol">640x480</td>
+							<td>2.0</td>
+							<td>1.28</td>
+							<td>1216</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">576p</td>
+							<td class="rescol">768x576</td>
+							<td>2.3</td>
+							<td>1.47</td>
+							<td>1408</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">576p HQ</td>
+							<td class="rescol">768x576</td>
+							<td>2.5</td>
+							<td>1.60</td>
+							<td>1536</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">720p</td>
+							<td class="rescol">960x720</td>
+							<td>3.0</td>
+							<td>1.92</td>
+							<td>1856</td>
+							<td>64</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">720p HQ</td>
+							<td class="rescol">960x720</td>
+							<td>4.0</td>
+							<td>2.56</td>
+							<td>2432</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">1080p</td>
+							<td class="rescol">1440x1080</td>
+							<td>6.0</td>
+							<td>3.84</td>
+							<td>3712</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowb">
+							<td class="namecol">1080p HQ</td>
+							<td class="rescol">1440x1080</td>
+							<td>9.0</td>
+							<td>5.76</td>
+							<td>5632</td>
+							<td>128</td>
+						</tr>
+						<tr class="rowa">
+							<td class="namecol">1080p Superbit</td>
+							<td class="rescol">1440x1080</td>
+							<td>N/A</td>
+							<td>20.32</td>
+							<td>20000</td>
+							<td>320</td>
+						</tr>
+					</tbody></table>
+					<p>Each bitrate has been chosen to be 64% (80% of 80%) of a common Internet link speed (1, 1.5, 2, 2.5, 3, 4, <span class="nowrap">5 Mbps</span>
+ etc) in order to make full – but safe – use of that common connection 
+speed. Unlike still images, where we want the smallest good-looking file
+ to have the web page finish loading as quickly as possible, for video 
+we only care that it downloads fast enough to play. Downloading a video 
+faster than we need for playback doesn't make any difference to the end 
+user, but using more of his link speed to improve the quality does, so 
+we actually want to avoid under-shooting the user's available bandwidth 
+for video, and <strong>increase the size/bitrate as much as is safely possible.</strong>
+ On the other hand, pushing too hard and using too much of the user's 
+link speed might result in pausing (for buffering), which is <em>much</em> worse from an end user's point of view than slightly lower quality.</p>
+					<figure><div id="percentageoflinkspeed" class="arearight">
+						<img class="diagram" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/percentageoflinkspeed.png" srcset="percentageoflinkspeed.svg 1.1x" alt="Chart of Average Sustained Download Speed as a Percentage of Advertised Speed Over a 24-Hour Period, by Provider">
+					</div></figure>
+					<p>So, we start with bitrates which match the most common link speeds, then leave 20% headroom for <a href="http://en.wikipedia.org/wiki/Protocol_overhead">protocol overhead</a> (which can be as much as <a href="http://blog.ioshints.info/2009/03/adsl-overhead.html">16% on ADSL</a>) and contention during busy times. <strong>Assuming 80% of peak link performance has long been a good real-world guide</strong>, and <a href="http://transition.fcc.gov/cgb/measuringbroadbandreport/8PerformanceVariationbyTimeofDay.pdf">US FCC data from 2011</a> confirms that's still the case (see chart). We then <strong>only use 80% of the remaining 80%</strong> (so just 64% of the original advertised link speed), leaving the <strong>extra 20% as "bitrate headroom"</strong> to allow the video to download safely ahead of what the target bitrate needs <em>on average</em>,
+ to cover bitrate fluctuations and spikes during hard-to-encode parts of
+ the video, such as rapid motion. Again, experience shows 80% is a good,
+ safe but not overly conservative choice (some assume as much as 90% is 
+safe, while <a href="http://www.netflix.com/">Netflix</a> seems to use a conservative
+					75%).</p>
+					<p>Internet link speeds continue to rise rapidly, so while our 
+chosen bitrates are higher than some other video web sites, for 
+quality's sake, they're still quite reasonable. Based on <a href="http://royal.pingdom.com/2010/11/12/real-connection-speeds-for-internet-users-across-the-world/">Akamai data from 2010</a>, the average real-world downloading speed (<em>after</em> protocol overhead) is already <span class="nowrap">8+ Mbps</span> in Japan, South Korea and Hong Kong, <span class="nowrap">4.6 Mbps</span> in the USA and Canada, somewhere around <span class="nowrap">4 Mbps</span> in Western Europe, <span class="nowrap">2.9 Mbps</span> in Australia and <span class="nowrap">2.6 Mbps</span> in Russia. Even 3G cellphone networking is around <span class="nowrap">2 Mbps</span> on average, although it's highly variable. The <strong>average American can therefore <em>already</em> view the 720p high-definition versions</strong>
+ of our videos without waiting, and the average Australian or Russian 
+the 480p versions. The average in
+					such statistics is skewed by the high speeds, of course, since it's
+ an exponential curve, but even so, about one third of Internet 
+connections in modern countries are over <span class="nowrap">5 Mbps</span> real-world downloading speed, which is enough for the <span class="nowrap">720p HQ</span> versions, and 70% are over <span class="nowrap">2 Mbps</span>
+ and therefore can definitely view the 480p versions without waiting. 
+Even in Australia, where broadband speed is more uneven and the average 
+lags behind most modern countries, <a href="http://www.abs.gov.au/ausstats/abs@.nsf/Lookup/8153.0Chapter4Dec%202011">government statistics from 2011</a> indicate 89% of users can view the 360p versions without any waiting <span class="nowrap">(1.5+ Mbps</span> link speed), and 45% can instantly view the full 1080p versions <span class="nowrap">(8+ Mbps</span> link speed).</p>
+					<p class="clear">It's useful to compare our chosen video bitrates 
+with the major online video providers. All use H.264 as their preferred 
+video codec. The bitrates below have been personally verified for 
+iTunes, YouTube and Vimeo, are official statements from <a href="http://www.hulu.com/about/media_faq#technology">Hulu</a>, the <a href="http://www.bbc.co.uk/blogs/bbcinternet/2009/04/bbc_iplayer_goes_hd_adds_highe.html">BBC</a> and <a href="http://www.streaminglearningcenter.com/articles/espn-video-upgrade-moves-to-h264-encoding-shuns-http-for-rtmp.html">ESPN</a>, and are taken from the user interface of Netflix...</p>
+					<table id="otherproviderstable" class="datatable">
+						<tbody><tr class="heading">
+							<th rowspan="2" class="providercol">Provider</th>
+							<th colspan="5">Video Bitrate (kbps)</th>
+						</tr>
+						<tr class="heading">
+							<th>~240p</th>
+							<th>360p</th>
+							<th>480p</th>
+							<th>720p</th>
+							<th>1080p</th>
+						</tr>
+						<tr class="rowa">
+							<td class="providercol"><a href="http://www.bbc.co.uk/iplayer/tv">BBC</a></td>
+							<td></td>
+							<td>800</td>
+							<td>1500</td>
+							<td>3200</td>
+							<td></td>
+						</tr>
+						<tr class="rowb">
+							<td class="providercol"><a href="http://espn.go.com/video/">ESPN</a></td>
+							<td>~400</td>
+							<td>1400</td>
+							<td>2000</td>
+							<td>2800</td>
+							<td></td>
+						</tr>
+						<tr class="rowa">
+							<td class="providercol"><a href="http://www.hulu.com/">Hulu</a></td>
+							<td>~480</td>
+							<td>700</td>
+							<td>1000</td>
+							<td>2500<br>
+							3200</td>
+							<td></td>
+						</tr>
+						<tr class="rowb">
+							<td class="providercol"><a href="http://www.apple.com/itunes/charts/movies/">iTunes</a></td>
+							<td></td>
+							<td></td>
+							<td>1500</td>
+							<td>4000</td>
+							<td>5000</td>
+						</tr>
+						<tr class="rowa">
+							<td class="providercol"><a href="http://www.netflix.com/">Netflix</a></td>
+							<td>~250</td>
+							<td>560</td>
+							<td>1050<br>
+							1750</td>
+							<td>2350<br>
+							3600</td>
+							<td>4800</td>
+						</tr>
+						<tr class="rowb">
+							<td class="providercol"><a href="http://vimeo.com/">Vimeo</a></td>
+							<td></td>
+							<td>800</td>
+							<td></td>
+							<td>2000</td>
+							<td>4500</td>
+						</tr>
+						<tr class="rowa">
+							<td class="providercol"><a href="http://www.youtube.com/">YouTube</a></td>
+							<td>250</td>
+							<td>500</td>
+							<td>1000</td>
+							<td>2000</td>
+							<td>3500</td>
+						</tr>
+						<tr class="ourbitraterow">
+							<td class="providercol">Our Bitrate</td>
+							<td>576</td>
+							<td>896</td>
+							<td>1216<br>
+							1536</td>
+							<td>2496<br>
+							3072</td>
+							<td>4992<br>
+							7552</td>
+						</tr>
+					</tbody></table>
+					<p>Or, more graphically...</p>
+					<figure><div id="usvsotherproviders">
+						<img class="diagram" src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/usvsotherproviders.png" srcset="usvsotherproviders.svg 1.1x" alt="Chart of Bitrate for a Given Resolution, by Provider">
+					</div></figure>
+					<p>Looking in terms of resolution...</p>
+					<ul>
+						<li>At <strong>240p we use a higher bitrate than everyone else</strong>
+ in order to guarantee a minimum acceptable level of 
+professional-looking quality, rather than looking ridiculously 
+blurry/blocky, <span class="nowrap">a la</span> YouTube. Even at this 
+bitrate, overall blurring and lack of detail is an issue, but serious 
+compression artifacts are generally only noticeable during high motion 
+and fades, which are a definite struggle. Other than that, the content 
+looks reasonably good, just at a very small, low resolution.</li>
+						<li>At <strong>360p our bitrate is almost double YouTube and Netflix, 28% above Hulu</strong>,
+ and roughly equal with (12% above) the quality-oriented BBC and Vimeo, 
+again to provide a professional level of quality. Fades are still very 
+problematic, but the rest of the time the quality is actually quite 
+good. At this resolution and the next, ESPN uses an insanely high 
+bitrate, which should be ignored (see below).</li>
+						<li>At <strong>480p we're right in the middle of the pack</strong>,
+ half way between YouTube/Netflix/Hulu on the low side and the 
+BBC/iTunes on the high side. At this point, the quality meets our 
+desired standard of being "very good", with few visible compression 
+artifacts and no major ones. It would pass for standard-definition 
+digital television, despite being about a quarter the bitrate!</li>
+						<li>At <strong>480p HQ we use the same bitrate as the BBC and iTunes</strong>,
+ and just a little (12%) below Netflix, the only other provider to offer
+ a second, higher-quality 480p version. The 26% increase in bitrate 
+helps to reduce any remaining visible compression artifacts, so video 
+quality is even better, with only the most difficult content, such as 
+high-detail fades, causing any noticeable glitches.</li>
+						<li>At <strong>576p none of the major providers offer a comparable version</strong>,
+ so it's been left out of the chart for simplicity. Quality-wise, the 
+same comments as for 480p apply here, and below, with very good quality 
+at the lower bitrate, and even better at the higher bitrate. We choose 
+to include 576p versions, unlike the other providers, because the <span class="nowrap">3-4 Mbps</span>
+ range is a reasonably common connection speed and we can offer 45% more
+ pixels with that extra bandwidth, rather than simply throwing it away.</li>
+						<li>At <strong>720p we're again right in the middle of the pack</strong>, half way between YouTube/Vimeo on the low side and the BBC on the high side, and roughly equal with Netflix and Hulu.</li>
+						<li>At <strong>720p HQ we use roughly the same bitrate as the BBC and Hulu</strong>, a little (15%) below Netflix, and well below the crazy bitrate of iTunes (but see below).</li>
+						<li>At <strong>1080p we're well above YouTube, slightly above Vimeo and equal with Netflix and iTunes</strong>, since there's no point trying to push lower – not many links exceed <span class="nowrap">7 Mbps</span> but not <span class="nowrap">8 Mbps,</span> so dropping to 4352 wouldn't achieve much except reduced quality.</li>
+						<li>At <strong>1080p HQ none of the major providers currently offer a comparable version</strong>,
+ so it's been left out of the chart for simplicity, although similarly 
+high bitrates are available from niche vendors and are common for 
+high-quality 1080p encodings in the pirate world. The increase in 
+bitrate for <span class="nowrap">1080p HQ</span> is a generous 50%, 
+compared to 17-26% for the other HQ versions, since this is the final 
+version we offer, and we want to ensure it has excellent quality.</li>
+					</ul>
+					<p>Looking in terms of link speed...</p>
+					<ul>
+						<li>for very slow links we provide a reasonably good, but small, 240p version at <span class="nowrap">640 kbps</span></li>
+						<li>for <span class="nowrap">1.5+ Mbps</span> links we provide a quite good 360p version</li>
+						<li>for <span class="nowrap">1.8+ Mbps</span> links we provide a very good 432p version</li>
+						<li>for <span class="nowrap">2+ Mbps</span> links we provide a very good 480p version, and even better at <span class="nowrap">2.5+ Mbps</span></li>
+						<li>for <span class="nowrap">3+ Mbps</span> links we provide a very good 576p version, and even better at <span class="nowrap">3.5+ Mbps</span></li>
+						<li>for <span class="nowrap">4+ Mbps</span> links we provide a very good 720p version, and even better at <span class="nowrap">5+ Mbps</span></li>
+						<li>for <span class="nowrap">8+ Mbps</span> links we provide a very good 1080p version, and excellent at <span class="nowrap">12+ Mbps</span></li>
+					</ul>
+					<p>As the chart shows, there are really 3 camps of providers. First, there are the <strong>providers whose bitrates seem too low: YouTube and Vimeo</strong>,
+ plus Netflix and Hulu at the lower resolutions. They aren't as 
+concerned about quality as they are about making sure it plays without 
+waiting at all costs, even if the quality is poor. Our chosen bitrates 
+are significantly higher than both YouTube and Vimeo at all resolutions,
+ due to our goal of very good visual quality with no major visible 
+compression artifacts. At the lower resolutions, we also use higher 
+bitrates than Netflix and Hulu, again for quality's sake, although 
+they're equal at higher resolutions. Interestingly, Netflix and Hulu are
+ the only others to offer multiple bitrates at some resolutions (480p 
+and 720p) to make full use of the user's Internet link speed for higher 
+quality.</p>
+					<p>Second, there are the <strong>providers who more-or-less agree with our chosen bitrates: Netflix and Hulu at the higher resolutions, and the BBC.</strong>
+ We're in near-perfect agreement with Netflix on appropriate transition 
+points to 480p and 720p, and in near-perfect agreement with the BBC on 
+high-quality bitrates.</p>
+					<aside><div class="sidebarright">
+						<p><strong>UPDATE:</strong> Providers sometimes change the 
+bitrates they offer based on experience and feedback from thier users. 
+For example, a couple of years after this article was written, Netflix 
+split their <span class="nowrap">1080p 4800kbps</span> offering into two normal/HQ variants, at 4300kbps and 5800kbps, and reduced their <span class="nowrap">720p HQ</span>
+ offering at the same time, down from 3600kbps to 3000kbps. Then a 
+couple of years after that, Netflix started to do content-specific 
+encoding for popular content, to save bandwidth in cases like 2D 
+animation and simple "talking head" content. The bitrates recommended 
+above, however, remain an excellent choice.</p>
+					</div></aside>
+					<p>Finally, there are the <strong>providers whose bitrates seem too high: Apple's iTunes movies and TV shows, and ESPN</strong>
+ especially at the lower resolutions. There are technical explanations 
+for both cases. iTunes is a bit sneaky about it, but it doesn't actually
+ offer true 848x480p as an option, instead using 640x480p <a href="http://en.wikipedia.org/wiki/Anamorphic_widescreen">anamorphically scaled</a>
+ in the horizontal dimension to widescreen. Apple does this for user 
+simplicity – just one "SD" which works on all of Apple's devices, even 
+the old <span class="nowrap">iPhone 1</span> and earlier video iPods. 
+Lowering the resolution like this means offering only 75% as many 
+pixels, which of course means Apple's bitrate at 480p actually covers 
+only 75% as many pixels, or put another way, it effectively uses a 33% 
+higher bitrate per pixel. iTunes also uses a higher bitrate than we do 
+at 720p, again by about 30%. At 720p iTunes doesn't sacrifice resolution
+ like it does at 480p, thankfully, but instead it just throws bandwidth 
+at the problem, using a whopping <span class="nowrap">4 Mbps</span> for 
+720p video! In both cases, this is primarily because Apple needs to use 
+high bitrates to compensate for the poor quality of the standard 
+QuickTime H.264 encoder, which <a href="http://www.streaminglearningcenter.com/articles/encoding-h264-video-for-streaming-and-progressive-download---presentation.html">consistently comes last in codec comparisons</a> and is visually worse even at a glance – our 480p encodings at <span class="nowrap">1216 kbps</span> are better than theirs at <span class="nowrap">1500 x 1.33 = 2000 kbps,</span>
+ a 64% higher per-pixel bitrate!
+					ESPN's bitrates are also higher than ours at all resolutions except
+ the very smallest version (where they're willing to sacrifice a <em>lot</em>
+ of quality to ensure it plays without waiting at all costs, for those 
+crazy sports fans), but the overly high bitrates are particularly 
+obvious at the lower mainstream resolutions. This is because ESPN <a href="http://www.streaminglearningcenter.com/articles/espn-video-upgrade-moves-to-h264-encoding-shuns-http-for-rtmp.html">still uses old RTMP adaptive streaming</a> (you thought that was dead, didn't you?), forcing them to use less flexible <em>constant-bitrate</em> encoding (yikes!).</p>
+					<h2><a id="encodersoftware"></a>Encoder Software - x264</h2>
+					<p>The choice of video encoder software has an extremely large 
+impact on final quality, probably more than any other choice except 
+bitrate. <strong>We use and recommend the excellent, open-source <a href="http://www.videolan.org/x264.html">x264</a> encoder</strong>,
+ which is essentially the gold standard of H.264 video encoding today, 
+and has been for several years. Since 2006, x264 has consistently won 
+the annual <a href="http://www.compression.ru/video/codec_comparison/index_en.html">MSU <span class="nowrap">MPEG-4</span> <span class="nowrap">AVC/H.264</span> Video Codecs Comparison</a> competition every year, along with numerous other codec comparisons and reviews. Its nearest rival is generally the <a href="http://www.mainconcept.com/">MainConcept</a> H.264 encoder used in applications such as <a href="http://www.adobe.com/products/mediaencoder.html">Adobe Media Encoder</a> and <a href="http://www.microsoft.com/expression/products/Encoder4_Overview.aspx">Microsoft Expression Encoder</a>.
+ While MainConcept is also a very good encoder, x264 reliably produces 
+slightly better quality at any given target bitrate, both subjectively 
+(IMHO) and as <em>objectively</em> measured by whatever metric is being used in the comparison (<a href="http://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">PSNR</a>, <a href="http://en.wikipedia.org/wiki/Structural_similarity">SSIM</a> etc).</p>
+					<p>In our particular case, we use the <a href="http://www.macupdate.com/app/mac/24173/x264encoder">x264Encoder</a> QuickTime codec, which provides x264 in the form of a plug-in component that integrates into the <span class="nowrap">Mac OS X</span> <a href="http://www.apple.com/quicktime/">QuickTime</a> video library, allowing easy use from most Mac applications including our batch-encoding tool of choice, <a href="http://www.apple.com/finalcutpro/compressor/">Compressor</a>. We could also use x264 through other, non-QuickTime-based encoding tools, such as <a href="http://handbrake.fr/">HandBrake</a>,
+ but they may not provide full access to all of x264's settings, and 
+they probably wouldn't also support other QuickTime codecs such as <a href="http://www.telestream.net/flip4mac-wmv/overview.htm" class="nowrap">Flip4Mac WMV</a>
+ which we also use for our overall encoding system. Compressor with 
+x264Encoder fits our requirements nicely, although we do lose a few 
+percent in performance because
+					both Compressor and <span class="nowrap">QuickTime 7</span> (on which it's based) are only <span class="nowrap">32-bit.</span></p>
+					<p>The high quality of x264 encoding is primarily due to...</p>
+					<ul>
+						<li><strong>aggressive motion-estimation search</strong>, which 
+helps find as much temporal and spatial redundancy in the image as 
+possible, using a large number of initial candidate predictors followed 
+by a complex, <a href="http://forum.doom9.org/showthread.php?p=693742#post693742">uneven multi-hexagon search</a> (with early exit for speed), followed by sub-pixel refinement using full <a href="http://en.wikipedia.org/wiki/Rate%E2%80%93distortion_optimization">rate-distortion optimization</a> to account for the real, final cost-vs-benefit of each choice</li>
+						<li><strong>excellent bitrate control/distribution</strong>, using <a href="http://x264dev.multimedia.cx/archives/98">macroblock-level analysis</a>
+ ("MB-tree") to track the degree of referencing of each macroblock 
+through the actual motion vectors from future frames, allowing the 
+encoder to only lower the quality in the areas of each frame which are 
+changing rapidly (not referenced much in the future), rather than 
+lowering the quality of the whole frame as in most encoders 
+–&nbsp;essentially traditional bitrate control but applied at the level 
+of each 16x16 macroblock rather than at the whole-frame level – which 
+helps maintain clear, stable backgrounds in the presence of moving 
+foreground objects</li>
+						<li><strong>intelligent, <a href="http://mailman.videolan.org/pipermail/x264-devel/2005-July/000777.html">adaptive, variable use of <span class="nowrap">B-frames</span></a></strong>,
+ rather than just using a fixed pattern like IBBPBBPBBPBB as in most 
+encoders, to make better use of the available bitrate by inserting the 
+more expensive but higher-image-quality I- and <span class="nowrap">P-frames</span>
+ where they're of most benefit to serve as reference frames, which is 
+good at all times but is particularly important during fades (one of the
+ hardest things to compress well)</li>
+						<li><strong><a href="http://forums.animesuki.com/showthread.php?t=64485">adaptive quantization</a></strong>,
+ which varies the quantizer for each individual macroblock within each 
+frame to avoid blur/blocking in flat areas containing fine/edge detail, 
+such as calm water, sky and animation</li>
+						<li><strong>full <a href="http://en.wikipedia.org/wiki/Rate%E2%80%93distortion_optimization">rate-distortion optimization</a></strong>
+ used for motion-vector refinement, macroblock partitioning (subdividing
+ each macroblock, balancing the cost of additional motion vectors 
+against the benefit of the less complex residual image left to encode), 
+and final quantization (the key lossy step!), which selects 
+locally-optimal motion vectors, macroblock partitioning and quantization
+ based on cost-vs-benefit using the real, actual cost of each possible 
+choice when that choice is processed right through to final entropy 
+encoding, versus the image-quality benefit as measured by the RDO metric
+ (see below)</li>
+						<li><strong>a <a href="http://forum.doom9.org/showthread.php?t=138293">"psycho-visual" rate-distortion optimization</a> metric</strong>, which tries to match <em>perceived</em>
+ visual quality better by de-emphasizing blurry "low-error but 
+low-energy" choices, rather than using simpler metrics like sum of 
+absolute differences (SAD), peak signal-to-noise ratio (PSNR) or 
+structural similarity of images (SSIM), which all tend to lean towards 
+low numeric pixel differences but too much blur</li>
+					</ul>
+					<p>x264 is also fast, with <a href="http://www.lighterra.com/papers/modernmicroprocessors/#dataparallelismsimdvectorinstructions">SIMD vector instructions</a> used for most primitive operations, along with good <a href="http://en.wikipedia.org/wiki/Thread_(computer_science)">multi-threading</a>
+ which achieves a near-linear speedup during the second encoding pass on
+ multi-core and multi-processor systems (video encoding is naturally a 
+highly parallel problem, of course, which makes parallelizing it pretty 
+easy). x264 is very fast for a software encoder, and actually 
+competitive with dedicated encoding hardware if fast settings are used, 
+while achieving better quality. We, of course, use <em>much</em> slower settings to achieve the highest possible quality, but we still appreciate the speed of x264.</p>
+					<p>OTHER ENCODERS: Even if you do use a different encoder, such as 
+MainConcept, you should still find this document useful, as most 
+encoders offer similar settings based on the underlying H.264 format 
+itself and the nature of video encoding in general. A word of warning, 
+though – <strong>do <em>not</em> use Apple's standard H.264 encoder, the one that comes built into QuickTime</strong>, as it isn't very good and <a href="http://www.streaminglearningcenter.com/articles/encoding-h264-video-for-streaming-and-progressive-download---presentation.html">consistently comes last in encoder comparisons</a>, especially at low bitrates.</p>
+					<h2><a id="encodingstrategyandpasses"></a>Encoding Strategy &amp; Passes <span class="option">(--pass)</span></h2>
+					<p>Having decided on resolutions, bitrates, and encoder software, 
+the next most important setting is the overall encoding strategy. There 
+are essentially 4 possibilities...</p>
+					<ul>
+						<li><strong>constant quality</strong> –&nbsp;uses a fixed 
+quantizer and lets the resulting file size/bitrate fluctuate arbitrarily
+ (like saving JPEG images at a certain quality,&nbsp;the file size will 
+be different for different images depending on their complexity)</li>
+						<li><strong>constant bitrate</strong> –&nbsp;makes each frame use 
+the same number of bits and lets the resulting quality fluctuate 
+arbitrarily (would be like saving JPEG images all to the same file size,
+ the quality would be worse for some images than others depending on 
+their complexity)</li>
+						<li><strong>single-pass variable bitrate</strong> –&nbsp;varies 
+both the quality and bitrate from one frame to the next, giving the 
+harder frames more bits in order to optimize for overall quality at a 
+target average bitrate, but with no knowledge of the overall content of 
+the video except for a small lookahead window of a few frames</li>
+						<li><strong>2-pass variable bitrate</strong> –&nbsp;varies both 
+the quality and bitrate from one frame to the next, giving the harder 
+frames more bits to achieve the maximum overall quality at a target 
+average bitrate, knowing the complete content of the video in advance to
+ allocate bits most appropriately across the whole video, perhaps 
+subject to a local peak bitrate constraint</li>
+					</ul>
+					<p>The constant-quality, fixed-quantizer strategy is simple, but is
+ of little interest for Internet video because the bitrate is too 
+variable and the final file's average bitrate is unpredictable. 
+Ultimately, we're targeting particular Internet link speeds, after all. 
+The constant-<em>bitrate</em> approach solves this problem, of course, 
+and can be made to work reasonably well, but it must typically use an 
+excessively high bitrate to guarantee acceptable quality in the 
+hard-to-encode parts of the video (as in the ESPN example, above), 
+because every frame gets an equal bit allocation, whether it's easy or 
+hard to encode. Typically, this means setting the bitrate high enough to
+ handle the worst case, which means it's <em>too high</em>, and wasteful, 99% of the time.</p>
+					<p>Single-pass, variable-bitrate encoding is fast and produces reasonably good quality, but the <strong>single pass means the encoder must <em>guess</em> what might be coming</strong>
+ in the future and make reasonable allowances "just in case", since the 
+encoder isn't psychic and doesn't know the content of the rest of the 
+video. It won't know one part is a particularly easy scene, while 
+another part is a hard scene to encode, so easy-to-encode scenes tend to
+ get too many bits relative to the harder scenes, where those bits would
+ have done more good.</p>
+					<p>With <strong>2-pass encoding, the encoder makes an entire pass through the video before writing a single bit</strong>
+ to the output file, precisely in order to learn exactly where the bits 
+would be spent most effectively (which scenes are the hard ones etc). 
+Unless you're in a high-volume situation where reducing the encoding 
+time really matters, or a live situation where you can't know what's 
+coming, if you can afford to wait, <strong>the longer encoding time of 2-pass variable-bitrate encoding is definitely worth it</strong> and results in significantly better quality.</p>
+					<p><span class="heading">All:</span> 2-pass variable-bitrate 
+encoding, to achieve the best possible quality at the target bitrates 
+and use every bit as wisely as possible.</p>
+					<h2><a id="h264profile"></a>H.264 Profile <span class="option">(--profile)</span></h2>
+					<p>The <a href="http://blog.mediacoderhq.com/h264-profiles-and-levels/">H.264 profile</a>
+ is a compatibility issue. It defines the capabilities required of the 
+player, that is, which features of the full H.264 format the player must
+ support in order to play the file. Naturally, the encoder can't use any
+ features which the player isn't guaranteed to have, so using a higher 
+profile uses more features to give better quality at the same target 
+bitrate, but prevents some older or lower-end players from playing the 
+file altogether...</p>
+					<ul>
+						<li><strong>Baseline profile is a subset of the normal H.264 format</strong> which drops the most CPU-intensive features, primarily <span class="nowrap">B-frames,</span> weighted predictions and <a href="http://en.wikipedia.org/wiki/Context-adaptive_binary_arithmetic_coding">CABAC arithmetic coding</a>
+ for the final entropy coding step. Removing these features allows H.264
+ videos to be played by quite low-performance processors, but sacrifices
+ quite a lot of quality to achieve that. Baseline is the only profile 
+supported on very old handheld devices such as the early video iPods and
+ the original <a href="http://support.apple.com/kb/SP495" class="nowrap">iPhone 1/3G</a>.</li>
+						<li><strong>Main profile was the original H.264 format</strong>, and is the profile <em>officially</em> supported on certain popular older Apple devices such as the <a href="http://support.apple.com/kb/SP587" class="nowrap">iPhone 4</a>, <a href="http://support.apple.com/kb/SP580" class="nowrap">iPad 1</a> and <a href="http://support.apple.com/kb/SP598" class="nowrap">Apple TV 2</a>,
+ although the hardware decoder in the A4 processor inside those devices 
+actually supports high profile (see below). Why Apple doesn't state that
+ in the specs is a mystery, but the specs are <em>wrong</em> – iTunes will happily sync high-profile videos to those devices (and even to the <a href="http://support.apple.com/kb/SP565" class="nowrap">iPhone 3GS</a>) as long as they're under the resolution and bitrate limits (see <a href="#h264level">H.264 level</a> below). <a href="http://www.anandtech.com/show/5687/apple-tv-3-2012-mini-review/4">iTunes uses high profile for its 720p resolution</a> videos,
+						<a href="http://www.streaminglearningcenter.com/articles/youtube-does-720p-hd-using-h264.html">as does YouTube</a>, and all play just fine on those devices. In reality, <strong>hardly any devices actually support <em>just</em> main profile, it's always either baseline or high profile</strong>,
+ because high profile came out just 18 months after the original H.264 
+standard, way back in 2004, well before H.264 had really "caught on" and
+ <em>way</em> before many hardware decoders were designed for it.</li>
+						<li>High profile contains a couple of extra features added soon 
+after the original H.264 standard was released, based on practical 
+experience with it. You can <strong>think of high profile as H.264 version 1.1.</strong> It was originally part of the more esoteric <a href="http://www.fastvdo.com/spie04/spie04-h264OverviewPaper.pdf">fidelity-range extensions</a>,
+ which included the niche profiles (see below), but high profile is far 
+more useful because it adds one key feature –&nbsp;the option to 
+adaptively use an 8x8 block size for the DCT, rather than just 4x4. This
+ yields a modest but noticeable improvement in compression efficiency, 
+and therefore quality at a given bitrate, without significantly 
+impacting playback complexity or CPU load. High is the profile supported
+ on <a href="http://en.wikipedia.org/wiki/Blu-ray_Disc" class="nowrap">Blu-ray</a>, the <a href="http://support.apple.com/kb/SP643" class="nowrap">iPhone 4S</a>, <a href="http://support.apple.com/kb/SP622" class="nowrap">iPad 2</a> and
+						<a href="http://support.apple.com/kb/SP648" class="nowrap">Apple TV 3</a> (and later models, naturally), as well as all mainstream desktop/laptop computers: <a href="http://lists.apple.com/archives/QuickTime-Users/2007/Aug/msg00105.html" class="nowrap">QuickTime 7.2</a> (Jul 2007), <a href="http://www.adobe.com/aboutadobe/pressroom/pressreleases/200712/120407adobemoviestar.html" class="nowrap">Flash 9.3</a> (Dec 2007), Windows Media <span class="nowrap">Player 12</span> (Jul 2009 as part of <a href="http://windows.microsoft.com/en-US/windows7/products/home" class="nowrap">Windows 7</a>), or any non-ancient version of <a href="http://www.videolan.org/">VLC</a>, <a href="http://www.mplayerhq.hu/">MPlayer</a> etc (libavcodec circa 2006).</li>
+						<li>There are also some niche profiles, such as <em>high10</em> which provides <span class="nowrap">10 bits</span> per color component, and <em>high444</em>
+ which provides full 4:4:4 chroma sampling. These aren't widely 
+supported for playback, but were intended for "high-fidelity" uses such 
+as long-term archival storage of masters. In particular, high444 has an 
+optional lossless mode by eliminating quantization, although the 
+resulting bitrate is huge, comparable to <a href="http://support.apple.com/kb/HT5151">ProRes</a>.
+ Archiving using these profiles is overkill and wasteful, and probably 
+unwise given the lack of common playback support, which is why they 
+aren't widely used.</li>
+					</ul>
+					<p>x264's default is high profile, except for the x264Encoder 
+QuickTime plug-in's iPod presets which use baseline profile. HandBrake's
+ <span class="nowrap">iPhone 4,</span> <span class="nowrap">iPad 1</span> and <span class="nowrap">Apple TV 2</span> presets also use high profile.</p>
+					<p><span class="heading">240p/360p:</span> baseline profile, in 
+order to safely play on anything, since these versions are the ultimate 
+fallbacks and might be delivered over the web to who-knows-what device, 
+including the original <span class="nowrap">iPhone 1/3G.</span></p>
+					<p><span class="heading">432p+:</span> high profile (default), even though it's not officially supported on the <span class="nowrap">iPhone 4,</span> <span class="nowrap">iPad 1</span> and <span class="nowrap">Apple TV 2,</span> because it's known to work and produces slightly better quality (if iTunes, YouTube and HandBrake can do it, so can we!).</p>
+					<p>COMPATIBILITY: We assume the web page video embedding mechanism 
+being used is intelligent enough to not embed a video with a resolution 
+greater than that of the screen (with certain special exceptions, such 
+as the <span class="nowrap">iPhone 1/3G</span> supporting 360p video on a 480x320 screen). Therefore, the above settings mean <strong>we assume any device with a screen resolution of more than 640x360 is also capable of H.264 high profile</strong>, but anything below that might only support baseline profile. This seems like a fairly safe bet, although there may be a <em>very small</em> number of old <a href="http://www.android.com/">Android</a>, <a href="http://www.microsoft.com/windowsphone/en-us/default.aspx">Windows</a> or <a href="http://www.blackberry.com/">Blackberry</a>
+ phones/tablets which have screen resolutions above 640x360 but only 
+support baseline profile (do any such cases actually exist?). No new 
+devices should
+					be getting designed with only baseline profile support today, but 
+if any common cases of this issue do ever occur it may be possible to 
+detect them in web page video embedding mechanisms and only use the 360p
+ version in that case.</p>
+					<p>QUALITY: For cases where the player supports high profile but 
+the Internet link is slow, such as a regular laptop on a slow 
+connection, better video quality could be achieved with a second 
+240p/360p version which used high profile. Unfortunately, supporting 
+different versions of a video in the same format, at the same resolution
+ <em>and</em> the same bitrate, based on some other, secondary criteria,
+ isn't possible in most web page video embedding mechanisms. That degree
+ of device- and feature-specific decision making would need some way to 
+indicate the features required for each video file variant (essentially 
+sub-formats), perhaps through a special file naming scheme, along with 
+some kind of device detection mechanism and feature capability database 
+on the JavaScript side, both of which are fragile and become unwieldy as
+ the number of features and devices increases. We have to draw the line 
+somewhere.
+					Fortunately, over 70% of users have Internet links fast enough to 
+get to at least the 480p version, where we do use high profile.</p>
+					<h2><a id="h264profileimplied"></a>H.264 Profile-Implied <span class="option">(various)</span></h2>
+					<p>For 240p/360p, only using baseline profile implies disabling the
+ following on-by-default features, which we also turn off explicitly for
+ completeness...</p>
+					<ul>
+						<li><strong><span class="nowrap">B-frames</span></strong> (frame reordering in the QuickTime dialog box) –&nbsp;allows <span class="nowrap">B-frames</span> (bidirectional frames).</li>
+						<li><strong>Weighted predictions</strong> (<span class="option">--weightp</span> &amp; <span class="option">--weightb</span>)
+ – allows referring to different reference frames using different 
+weightings which are then combined, especially useful for fades.</li>
+						<li><strong>8x8 DCT blocks</strong> (<span class="option">--8x8dct</span>) –&nbsp;allows use of 8x8 blocks for DCT transforms, rather than just 4x4 blocks.</li>
+						<li><strong>CABAC entropy coding</strong> (<span class="option">--cabac</span>) –&nbsp;uses more space-efficient but CPU-intensive <a href="http://en.wikipedia.org/wiki/Arithmetic_coding">arithmetic coding</a> for the final lossless compression step of the encoding pipeline, rather than simpler <a href="http://en.wikipedia.org/wiki/Variable-length_code">variable-length coding</a>, for 10-20% better overall compression.</li>
+					</ul>
+					<p>COMPATIBILITY: A <a href="http://x264dev.multimedia.cx/archives/212">handful of players don't correctly handle weighted predictions</a>, including very old versions of Flash, CoreAVC, the MediaTek hardware decoders in some old LG, Phillips and Oppo <span class="nowrap">Blu-ray</span>
+ players, and the Sony PlayStation Portable (PSP). Fortunately, as of 
+mid-2010 practically all such bugs had been ironed out, except the PSP 
+which we don't support anyway <a href="#numberofreferenceframes">for other reasons</a>, so we can safely use weighted predictions, which are crucial for good fades.</p>
+					<h2><a id="h264level"></a>H.264 Level <span class="option">(--level)</span></h2>
+					<p>The <a href="http://blog.mediacoderhq.com/h264-profiles-and-levels/">H.264 level</a> is a compatibility issue related to speed and resolution. Whereas the H.264 profile (above) defines the video compression <em>features</em>
+ the player must support, the H.264 level defines the peak bitrate the 
+player can handle, along with the maximum resolution, and the maximum <a href="#numberofreferenceframes">number of reference frames</a>
+ held in memory during playback (see later section). x264's default is 
+to automatically set the output file's level based on the peak bitrate, 
+resolution, number of reference frames, and other settings. There's <strong>no reason to change this setting, but it's a good idea to document the levels used.</strong></p>
+					<p><span class="heading">All:</span> automatic (default), which results in level 2.1 for 240p, 3.0 for 360p/432p, 3.1 for 480p/576p/720p and 4.0 for 1080p.</p>
+					<h2><a id="peakbitrate"></a>Peak Bitrate <span class="option">(--vbv-maxrate &amp; --vbv-bufsize)</span></h2>
+					<p>Limiting the peak bitrate is a necessary evil, required in order
+ to limit the severity of spikes and overruns of the target bitrate 
+during hard-to-encode sections of the video, such as rapid motion. Video
+ codecs like H.264 naturally vary the bitrate over the course of the 
+video to dedicate more bits to the frames that need them most, which is 
+critical to achieving high quality. In a web playback scenario, however,
+ whether it's <a href="http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming">adaptive streaming</a> or the more usual <a href="http://en.wikipedia.org/wiki/Progressive_download">progressive download while playing</a>, we can't let the bitrate fluctuate <em>too</em>
+ wildly, because severe spikes or sustained overruns of the target 
+bitrate might cause playback to pause (for buffering), and pausing is <em>much</em> worse from an end user's point of view than a bit of blurring during a high-motion scene.</p>
+					<p>It's a tradeoff – <strong>too strict a peak bitrate limit will reduce quality <em>a lot</em></strong> by removing the ability of the variable bitrate to use the bits most wisely (bitrate variations are a <em>good</em> thing), but <strong>too generous a limit will make pausing for buffering more likely</strong>,
+ especially for the slower connections within each resolution's target 
+link-speed range, because the player won't have downloaded far enough 
+ahead to cover a big spike, even with our 20% bitrate headroom (ie: we 
+know the user's Internet link can download at least 1.25x the target 
+average bitrate, see earlier section on <a href="#resolutionsandbitrates">resolutions and bitrates</a>).</p>
+					<p>x264's default is not to limit the peak bitrate at all, except 
+for the x264Encoder QuickTime plug-in's iPod presets which limit it to <span class="nowrap">10 Mbps</span> with a 256k buffer, which is the limit of the hardware decoder in the video iPods and <span class="nowrap">iPhone 1/3G</span> (ie: H.264 level 3.0, see <a href="#h264level">H.264 level</a>
+ above). Most people and encoding tools recommend a peak bitrate of 
+double the target average bitrate, a few only 1.5x, and some no limit at
+ all.</p>
+					<p><span class="heading">240p/360p:</span> double the target bitrate with a 256k buffer (works out to 1.8/1.14 seconds), to allow for the original <span class="nowrap">iPhone 1/3G</span> and similar devices.</p>
+					<p><span class="heading">432p-1080p:</span> double the target bitrate with a <span class="nowrap">1.5-second</span>
+ buffer (1.5x peak bitrate), which is generous on the assumption our 20%
+ bitrate headroom will cover most spikes and general fluctuations, so 
+only really problematic, sustained overruns need to be clipped by the 
+encoder (at a loss of quality).</p>
+					<p><span class="heading">1080p Superbit:</span> <span class="nowrap">25 Mbps</span> to keep within H.264 level 4.0 (works out to 1.25x the already very high target bitrate), with a <span class="nowrap">30-Mbit</span> buffer which is the minimum size allowed for <span class="nowrap">Blu-ray</span> players and therefore should be safe for most 1080p hardware decoders (works out to 1.2 seconds).</p>
+					<p>PAUSING RISK: The settings for 432p-1080p are fairly generous 
+and probably cause almost no spike clipping for most content at the 
+encoder level, leaving only our 20% bitrate headroom. If anything, we're
+ leaning slightly towards better overall quality at the risk of possible
+ pausing for buffering on the very slowest links within each link-speed 
+range. If the user was to jump into the middle of the video and land in a
+ high-motion scene which temporarily uses double the target bitrate, the
+ player would start playback then suddenly pause and have to wait while 
+it buffered. A setting of something like 1.5x the target bitrate and a <span class="nowrap">1-second</span>
+ buffer would be a safer, more conservative setting, although even that 
+wouldn't completely prevent the "jump into high-motion scene" risk, 
+which is almost unavoidable, really.</p>
+					<h2><a id="quantizercurvecompression"></a>Quantizer-Curve Compression <span class="option">(--qcomp)</span></h2>
+					<p>The <strong>quantizer is <em>the</em> critical value in the main lossy step of quantization during video (and image) compression</strong>,
+ and the value is varied on a block-by-block and frame-by-frame basis to
+ control the quality. Lower quantizers remove less of the minor values 
+in the DCT matrix of frequency coefficients for each block, preserving 
+more of the original signal's frequency distribution, meaning the output
+ is closer to the original image, and leaving more coefficients to be 
+written to the file. With very low quantizers, less than about 10, the 
+output will look practically the same as the input, since almost no part
+ of the frequency signal is being left out (although it won't be <em>exactly</em> the same, even with a quantizer of 1, because there is still rounding to integers happening).</p>
+					<p>A <strong>high-quality video encoding will vary both the bitrate and the quantizer from one frame to the next.</strong>
+ During hard-to-encode frames involving rapid motion, for example, it is
+ necessary to use more bits, as you would expect with variable-bitrate 
+encoding, but it's wise to also lower the quality by increasing the 
+quantizer, rather than maintaining an unnecessarily high quality by 
+throwing excessive bits at those difficult frames and thus wasting those
+ bits, because the rapid motion will largely hide any improved quality, 
+when those bits could have been used to improve quality elsewhere in 
+other frames of the video. On the other hand, <strong>allowing the quantizer to go too high risks reducing the quality too much</strong>,
+ making the quality drop visible and resulting in noticeably "bad" 
+sections during hard-to-encode parts of the video, like rapid motion and
+ fades. The human eye is particularly drawn to such "bad" sections, 
+noticing them as <em>glitches</em> which stand out from the video's normal overall quality.</p>
+					<p>The tradeoff between varying the bitrate and varying the 
+quantizer, that is, throwing more bits at difficult frames or reducing 
+their quality instead, is controlled by the degree of "compression" 
+applied to the quantizer curve – the curve of the changing quantizer 
+over time (at the per-macroblock level in x264, rather than whole 
+frame). The setting varies from 0 to 1. At 0, the bitrate is not allowed
+ to vary at all, producing a constant-bitrate encoding with the 
+consequence of quality dropping severely during hard-to-encode sections 
+of the video. At the other extreme of 1, the bitrate is allowed to vary 
+as wildly as necessary (subject to the <a href="#peakbitrate">peak bitrate</a>,
+ see above) to maintain high quality during hard-to-encode sections, 
+possibly wasting those bits because hard-to-encode sections of the video
+ are usually rapid motion or fades, and thus by their very nature are 
+transient, with individual frames changing so quickly that high 
+individual frame quality is difficult for humans to see. The default 
+value of 0.6 is supposed to represent a reasonable tradeoff, but there 
+appears to be very little evidence to support that particular value, 
+with it having essentially been inherited from the older <a href="http://www.xvid.org/">XviD</a> encoder (x264's predecessor).</p>
+					<p>A <a href="http://forum.doom9.org/showthread.php?t=147302">detailed discussion of quantizer compression</a>
+ showed that higher values than 0.6 produce considerably better results,
+ assuming 2-pass encoding and a sensible peak bitrate setting, and our 
+own testing easily confirms this. The difference is especially obvious 
+for low-bitrate encodings, where the default value of 0.6 often produces
+ "good looking static and slow motion scenes, and very bad fast moving 
+scenes." It seems to be generally agreed that a higher value than 0.6 is
+ better for low-bitrate encodings – even the people who argue for the 
+default staying at 0.6 admit that. And of course for high-bitrate 
+encodings it doesn't really matter, precisely because they're 
+high-bitrate so quality is far less of an issue –&nbsp;it's going to 
+look great either way, and there's likely to be no noticeable difference
+ between 0.6 and 0.9. The bottom line is that <strong>variable bitrate is absolute <em>magic</em> for video encoding</strong>, and <strong>the last thing we want to do is suppress that magic.</strong></p>
+					<p><span class="heading">All:</span> 0.9.</p>
+					<h2><a id="minimumquantization"></a>Minimum Quantization <span class="option">(--qpmin)</span></h2>
+					<p>Raising the minimum quantizer from its default of 0 (really 1) <em>shouldn't</em>
+ be required, and in fact would only force lower-than-ideal quality in 
+some areas of the frame under the rare conditions where a very low 
+quantizer could be used for very high-detail blocks. Unfortunately, <strong>some players, such as QuickTime, have bugs playing back files with quantizers below 3</strong>,
+ which is why the x264Encoder QuickTime plug-in defaults to a minimum 
+quantizer of 4, and HandBrake similarly defaults to 3. Fortunately, 
+raising the minimum quantizer to 3 has essentially no effect on 
+real-world quality, as any quantizer below about 10 is practically 
+lossless.</p>
+					<p><span class="heading">All:</span> 3, for QuickTime compatibility.</p>
+					<h2><a id="permacroblockbitratecontrollookahead"></a>Per-Macroblock Bitrate-Control Lookahead <span class="option">(--rc-lookahead)</span></h2>
+					<p>x264 uses sophisticated macroblock-level bitrate control 
+("MB-tree") which tracks the degree of referencing of each macroblock 
+through the actual motion vectors from future frames, allowing the 
+encoder to only lower the quality in the areas of each frame which are 
+changing rapidly (not referenced much in the future), rather than 
+lowering the quality of the whole frame as in most encoders 
+–&nbsp;essentially traditional bitrate control but applied at the level 
+of each 16x16 macroblock rather than at the whole-frame level. This 
+particularly helps to maintain clear, stable backgrounds in the presence
+ of moving foreground objects.</p>
+					<p>Using <strong>a longer "lookahead" for this per-macroblock bitrate analysis increases quality</strong> by allowing more effective fine-grained, per-macroblock use of the available bitrate, <strong>but encoding will take longer and use significantly more memory</strong>,
+ particularly at high resolutions (there are over 8000 16x16 macroblocks
+ in a single 1920x1080 high-definition frame, after all). x264's default
+ is 40 frames, with diminishing returns as the distance increases to 
+about 60 frames, and no practical gain beyond that.</p>
+					<p><span class="heading">All:</span> 60.</p>
+					<h2><a id="scenechangedetection"></a>Scene-Change Detection <span class="option">(--scenecut)</span></h2>
+					<p>Detection of <strong>when the scene has changed, and thus when it's a good time to insert a keyframe</strong> <span class="nowrap">(I-frame),</span>
+ is a critical issue. x264's scene-change detection setting works 
+counter-intuitively, the opposite of a change threshold –&nbsp;<strong>higher values <em>increase</em> the number of scene changes detected.</strong>
+ x264's default is 40, but strangely the x264Encoder QuickTime plug-in's
+ presets all use 80, which would result in a lot of unnecessary scene 
+changes being detected.</p>
+					<p><span class="heading">All:</span> 40 (x264 default).</p>
+					<h2><a id="maximumkeyframeinterval"></a>Maximum Keyframe Interval <span class="option">(--keyint)</span></h2>
+					<p>The maximum amount of time between keyframes <span class="nowrap">(I-frames)</span>
+ has a major impact on quality, which makes it one of the most important
+ settings to tune, and one of the most difficult decisions. The encoder 
+will try to use keyframes at <a href="#scenechangedetection">scene changes</a>,
+ of course (see above), but for a lot of content this value is important
+ because many scenes are longer than 5 or even 10 seconds. Having <strong>too many keyframes severely reduces quality</strong>,
+ because the efficiency of reusing image areas from previous frames is 
+completely lost at each keyframe – the encoder has to "start over" at 
+every keyframe. Therefore, we want as few keyframes as possible to 
+achieve the highest quality for the given target bitrate.</p>
+					<p>On the other hand, we <strong>still want enough keyframes that seeking and fast-forwarding behavior is good</strong>,
+ because players can only jump directly to keyframes "under the hood" 
+during playback, and will usually only display the keyframes during 
+fast-forwarding and rewinding at higher speeds (at low speeds such as 2x
+ or 3x they can often play every frame). Jumping to an arbitrary point 
+in the timeline therefore becomes more sluggish the fewer keyframes 
+there are, because more intervening delta-frames need to be decoded just
+ to reconstruct the final target frame, even though those intervening 
+frames between the previous keyframe and the target frame won't actually
+ be displayed. If the video is deployed using <a href="http://en.wikipedia.org/wiki/Adaptive_bitrate_streaming">adaptive
+					streaming</a>, where the player might dynamically switch between 
+different versions during playback based on the available network 
+bandwidth, then such switching can also only occur at the keyframes (of 
+the stream being switched to), so again we don't want the keyframes too 
+far apart.</p>
+					<p>x264's default is 250 frames (8.3 seconds at 30fps), but for no 
+good reason the x264Encoder QuickTime plug-in's default is only 60 
+frames (2 seconds). The x264 team have recently been using 500 frames 
+(16.7 seconds) for their settings at the annual <span class="nowrap">MPEG-4</span> <span class="nowrap">AVC/H.264</span>
+ Video Codecs Comparison competition, but that's definitely pushing 
+things a bit too far. Digital TV normally uses 1 or 2 seconds, but 
+that's deliberately quite short to make channel switching fast and to 
+have quick error recovery in case of interference. DVD uses a very short
+ ~0.5 second keyframe interval, and <span class="nowrap">Blu-ray</span> 1
+ second, because they use very high bitrates (so quality isn't an issue)
+ and they want to guarantee good fast-forwarding behavior despite being 
+read from a relatively slow optical disc. The most common recommendation
+ for Internet video is 10 seconds.</p>
+					<p><span class="heading">All:</span> 12 seconds (360 frames at 
+30fps), which is enough to cover the vast majority of scenes and result 
+in only "natural" scene-change keyframes, and about as far as we can 
+push it. Fast-forwarding while seeing only one frame for every 12 
+seconds of video is just barely okay, as a worst-case scenario. Assuming
+ fast-forwarding at 10x speed, that means 6 seconds per minute with 5 
+keyframes, resulting in 1.2 seconds on-screen per keyframe. Jumping to 
+arbitrary points in the timeline definitely feels sluggish as well, but 
+not <em>too</em> painful, even at 1080p, and it will get better in time with faster computers.</p>
+					<h2><a id="minimumkeyframeinterval"></a>Minimum Keyframe Interval <span class="option">(--min-keyint)</span></h2>
+					<p>The <strong>H.264 format actually supports two different types of <span class="nowrap">I-frames</span></strong> – traditional keyframe "IDR" <span class="nowrap">I-frames</span> which represent suitable restart points (IDR stands for "instantaneous decoder refresh"), and other, lesser, non-IDR <span class="nowrap">I-frames</span> in which frames after the non-IDR <span class="nowrap">I-frame</span> can still refer to frames before the <span class="nowrap">I-frame,</span> meaning the non-IDR <span class="nowrap">I-frame</span> <em>can't be used as a restart point</em>, but it's still encoded as an <span class="nowrap">I-frame!</span>
+ This latter case is only really useful for handling extreme flashes and
+ other sudden, single-frame mass changes, which are very rare.</p>
+					<p>The minimum keyframe interval controls which of these two types of <span class="nowrap">I-frames</span> is used at each occurrence, by preventing full IDR <span class="nowrap">I-frames</span>
+ from being placed closer than this number of frames apart. x264's 
+default is 10% of the maximum keyframe interval, which would often be 
+about 1 second, and makes sense since there's no need to have two 
+restart points closer than that. Unfortunately, it's known that <strong>some players <a href="http://www.streaminglearningcenter.com/articles/everything-you-ever-wanted-to-know-about-idr-frames-but-were-afraid-to-ask.html">have trouble when fast-forwarding or scrubbing</a> in a video with non-IDR <span class="nowrap">I-frames</span></strong>,
+ including some recent versions of QuickTime and Flash, which is why the
+ x264Encoder QuickTime plug-in's default is 1, making every <span class="nowrap">I-frame</span> a full IDR <span class="nowrap">I-frame.</span></p>
+					<p><span class="heading">All:</span> 1 (x264Encoder default, not x264 default), for compatibility with QuickTime, Flash and various other players.</p>
+					<h2><a id="motionestimationsearchpattern"></a>Motion-Estimation Search Pattern <span class="option">(--me)</span></h2>
+					<p>Ultimately, high-quality video encoding at lowish bitrates is all about <strong>finding similar image areas in previous frames, and reusing them.</strong>
+ The search pattern is the pattern used during motion estimation to 
+search for the most similar area to each macroblock in each possible 
+reference frame, in order to select the best motion vector for each 
+macroblock. <strong>This is where a great deal of encoding time is spent.</strong>
+ More thorough search patterns will find better matches, producing 
+better motion vectors, leading to a less complex residual image left to 
+encode after motion compensation, and therefore better quality at the 
+given target bitrate. Of course, a more thorough search also takes a lot
+ longer during encoding.</p>
+					<p>The simplest search pattern is a straightforward 4-point diamond
+ shape (left/right/up/down), with the next simplest a 6-point hexagon, 
+then a complex <a href="http://forum.doom9.org/showthread.php?p=693742#post693742">uneven multi-hexagon</a> (UMH), and finally full-blown exhaustive search (which is very slow indeed).</p>
+					<p>x264's default is a simple hexagon, but it's widely acknowledged that <strong>x264's implementation of uneven multi-hexagon search is one of its biggest advantages</strong>
+ over other encoders, and usually achieves within 0.5% of full 
+exhaustive search. The quality-oriented presets, including the 
+x264Encoder QuickTime plug-in's "optimized" presets, all use uneven 
+multi-hexagon search.</p>
+					<p><span class="heading">All:</span> uneven multi-hexagon.</p>
+					<h2><a id="motionestimationsearchrange"></a>Motion-Estimation Search Range <span class="option">(--merange)</span></h2>
+					<p>As mentioned above, in the end, high-quality video encoding at 
+lowish bitrates is all about finding areas of similarity and reusing 
+them. <strong>The larger the search area, the more likely the encoder will find a good match</strong>, leaving a less complex residual image to be encoded and therefore producing better quality at the given target bitrate, but <strong>the larger search will also take much longer</strong>
+ to run. High-definition material benefits from a larger search range 
+more than lower resolutions, naturally, because the same camera or 
+object movement covers more pixels in a high-resolution situation. 
+x264's default is 16 pixels, but note that for uneven multi-hexagon 
+search the search pattern is changed and iterated at several different 
+levels, so the range isn't <em>literally</em> 16 pixels exactly.</p>
+					<p>Increasing the search range suffers from severely diminishing 
+returns, greatly increasing encoding time for no visible gain in most 
+cases, since areas further away are unlikely to be very similar. On the 
+other hand, a large search range is most useful for high-motion scenes, 
+which are precisely the scenes that are the hardest to encode, where a 
+noticeable drop in quality is most likely and the need to find any 
+available similarities is the most pressing. So <strong>a large search 
+range, while generally of little benefit, is vitally important in those 
+few critical times of rapid motion which make such a big difference to 
+the overall perceived quality</strong> of the encoding ("It's not how well you do the easy stuff, it's how well you do the hard stuff").</p>
+					<p><span class="heading">240p-720p:</span> 32, which is excellent 
+coverage at 720p and overkill for the lower resolutions, but we need 
+every scrap of similarity we can find at the lower resolutions because 
+of their lower bitrates, and encoding is relatively fast at low 
+resolutions anyway.</p>
+					<p><span class="heading">1080p:</span> 48, to account for the same relative movement within the 1.5x1.5 times larger frame.</p>
+					<h2><a id="subpixelmotionvectorrefinement"></a>Sub-Pixel Motion-Vector Refinement <span class="option">(--subme)</span></h2>
+					<p>Motion-vector refinement controls how much time and effort the 
+encoder should put into macroblock partitioning decisions and final 
+motion-vector refinement for H.264's quarter-pixel motion vectors. A <strong>more thorough evaluation of the possible final motion vectors will find better matches</strong>,
+ producing better motion vectors, leading to a less complex residual 
+image left to encode after motion compensation, and therefore better 
+quality at the given target bitrate. Naturally, a <strong>more thorough evaluation will also take a lot longer</strong> during encoding. Ultimately, this setting and the previous two (<a href="#motionestimationsearchpattern">search pattern</a> and <a href="#motionestimationsearchrange">search range</a>) are where the "rubber meets the road" in terms of the quality-vs-encoding-time tradeoff. <strong>This is where we pay for the higher quality of our encodings.</strong></p>
+					<p>Settings 1-5 don't use rate-distortion optimization and are 
+intended for fast, lower-quality encoding situations such as live video 
+conferencing. A setting of 6 enables rate-distortion optimization for I-
+ and <span class="nowrap">P-frames,</span> 7 adds RDO for <span class="nowrap">B-frames,</span> 8 enables RDO refinement for I- and <span class="nowrap">P-frames,</span> 9 adds RDO refinement for <span class="nowrap">B-frames,</span> and a setting of 10 enables quarter-pixel RDO refinement for all frames (requires <a href="#ratedistortionoptimization">full RDO</a>, see later section). x264's default is 7.</p>
+					<p><span class="heading">All:</span> 10.</p>
+					<h2><a id="predictedmotionvectors"></a>Predicted Motion Vectors <span class="option">(--direct)</span></h2>
+					<p>The H.264 format allows the encoder to use <strong>predicted motion vectors instead of actually encoding each vector explicitly</strong>,
+ which saves some bits and thus slightly improves quality. The 
+prediction can be either spatial (predict from neighboring blocks) or 
+temporal (predict from previous frames). x264's default is spatial, but 
+it also offers an automatic mode which selects the best choice for each 
+frame (requires 2-pass encoding).</p>
+					<p><span class="heading">All:</span> automatic.</p>
+					<h2><a id="numberofreferenceframes"></a>Number of Reference Frames <span class="option">(--ref)</span></h2>
+					<p>Unlike previous codecs, H.264 supports multiple reference frames, so <strong>each macroblock in each P- or <span class="nowrap">B-frame</span> can refer to a different reference frame with its motion vectors</strong>,
+ allowing better matches to be found, resulting in a less complex 
+residual image to encode and thus better quality at the given target 
+bitrate. Allowing just 2 reference frames yields a big quality 
+improvement in certain special cases, such as sudden large-but-temporary
+ changes in the frame. This essentially solves the "camera flash" 
+problem that plagued earlier codecs such as <span class="nowrap">MPEG-2</span>
+ when dealing with content such as celebrity press events, since the 
+problematic flash frame's content doesn't have to negatively affect 
+future frames, which can now point to the frame <em>before</em> the flash instead.</p>
+					<p><strong>Increasing the number of reference frames beyond 2 
+allows even better matches to possibly be found, but naturally suffers 
+from severely diminishing returns</strong> after 3 or 4 frames, since 
+frames further away in time are likely to be more and more different and
+ therefore not very useful for finding similarities. Increasing the 
+number of reference frames also dramatically increases the encoding 
+time, since motion-estimation search, which is the slowest part of video
+ encoding, has to occur on all possible reference frames in order to 
+find the best match.</p>
+					<aside><div class="sidebarright">
+						<p>The maximum number of reference frames at 1080p at its normal 
+H.264 level of 4.0/4.1 is 4 frames. A 1080p frame in YUV 4:2:0 format 
+takes 1920x1080x1.5 bytes, or just under <span class="nowrap">3 MB,</span> so 4 reference frames take <span class="nowrap">12 MB,</span> plus <span class="nowrap">3 MB</span> for the frame currently being decoded, meaning a level 4.0 player uses <span class="nowrap">15 MB</span> for the frames, notionally fitting nicely into a <span class="nowrap">16 MB</span> total, but far more than most mainstream processors currently have on-chip (current CPUs have L2/L3 caches ranging from 2 to <span class="nowrap">8 MB).</span>
+ Similarly, 720p at its normal level of 3.1 has a maximum of 5 reference
+ frames, which works out to the player using a little under <span class="nowrap">8 MB</span>,
+ and level 3.0, which we use for 360p, has a maximum of 6 reference 
+frames for 720x480 NTSC and 5 for 720x576 PAL, which works out to, you 
+guessed it, a little under <span class="nowrap">4 MB.</span></p>
+					</div></aside>
+					<p>Hardware decoders place a limit on the maximum number of reference frames allowed during playback, indicated by their supported <a href="#h264level">H.264 level</a>
+ (see earlier section). Although the limit on the number of reference 
+frames notionally relates to "video memory size", in reality any limit 
+on the H.264 level is actually more of a general indicator of decoding 
+speed, based on the expected performance of the memory system under a 
+workload with the given number of reference frames. The more reference 
+frames, the lower the memory locality (reuse) and the larger the active 
+working set, meaning more cache misses and more time spent waiting for 
+main memory, which substantially reduces performance. The hardware's 
+memory latency and bandwidth play a big part here, as does the size and 
+speed of the L2/L3 cache for a regular CPU, or the size of the internal 
+scratch RAM in an SoC video-decoder block. No normal CPUs or hardware 
+SoC decoders currently have enough on-chip memory to avoid the use of 
+main memory altogether at the higher resolutions, except for a GPU-based
+ player and its local video memory on the graphics card (which will have
+ <em>way</em> more than is needed).</p>
+					<p>Unfortunately, some popular hardware decoders <em>don't</em> smoothly play videos which use the decoder's claimed maximum number of reference frames (eg: the NVIDIA <span class="nowrap">Tegra 2</span>
+ processor under old versions of Android), resulting in either no 
+playback or severe stuttering during playback if the number of reference
+ frames is too high. This is usually due to inadequate cache size and/or
+ a lack of suitable prefetching to cover main-memory latency. Some 
+software players also struggle with large numbers of reference frames, 
+for similar reasons.</p>
+					<p>x264's default is 3 reference frames, which is also what YouTube
+ uses. iTunes uses 4 for 1080p, but only 2 for 720p, presumably for 
+compatibility with older, slower computers (Apple also avoids CABAC at 
+720p, presumably for the same reason, and uses a high bitrate to 
+compensate). Taking this to an extreme, iTunes uses just 1 reference 
+frame for 480p, which is ridiculous since playing 480p H.264 baseline 
+video should be relatively easy for any modern computer. Perhaps Apple 
+are just being ultra-conservative in case something becomes a problem in
+ the future, and they want their fallback SD videos to be as undemanding
+ as possible in terms of required performance, but not using even 2 
+reference frames is taking things way too far!</p>
+					<p><span class="heading">All:</span> 4, which should find about as 
+much useful similarity as there is to find, doesn't blow out the 
+encoding time ridiculously, complies with the target H.264 levels, is 
+safe for almost all known hardware decoders (assuming <span class="nowrap">Android 3.1+</span> on <span class="nowrap">Tegra 2</span> processors), and shouldn't really stress software players too much.</p>
+					<p>COMPATIBILITY: The Sony PlayStation Portable (PSP) is a 
+significant device which does not play H.264 video with our chosen 4 
+reference frames. Given its 480x272 screen resolution, however, combined
+ with the PSP's various video playback limitations, the only version of 
+our videos the PSP could possibly play would be the lowest-quality 
+320x240 version for non-widescreen content, and no version at all for 
+the by-far more common case of widescreen content. We therefore simply 
+do not support the PSP as a target for our videos.</p>
+					<p>PERFORMANCE: Testing shows reducing the number of reference 
+frames down to just 2 doesn't significantly improve the playback speed 
+of notoriously slow software players, such as <span class="nowrap">QuickTime 7</span> on Windows. The difference is barely measurable, a few percent at most, perhaps making a stressful, high-motion <span class="nowrap">720p HQ</span>
+ video play at 21fps rather than 20fps (where other software players 
+achieve the full 30fps on the same system, as do all hardware decoders).
+ Given the loss of visual quality, the widespread use of 
+hardware-accelerated playback in practice, and thinking long-term, a 
+small gain in playback speed on "bad" players isn't worth it, since it 
+doesn't really fix the problem –&nbsp;playback is still not acceptably 
+smooth, and most people wouldn't notice any real difference in 
+smoothness.</p>
+					<h2><a id="bframesasreferenceframes"></a>B-Frames as Reference Frames <span class="option">(--b-pyramid)</span></h2>
+					<p>The <strong>H.264 format allows <span class="nowrap">B-frames</span> to be used as references for other frames</strong> (why wouldn't it?), which is <strong>sometimes called <span class="nowrap">B-frame</span> pyramiding</strong> because a "pyramid" of <span class="nowrap">B-frames</span> forms, with lower <span class="nowrap">B-frames</span> pointing up to higher <span class="nowrap">B-frame(s)</span>, which then point to one or more <span class="nowrap">P-frames</span> and ultimately to an <span class="nowrap">I-frame</span> (keyframe).</p>
+					<p>Unfortunately, <strong>some players don't correctly handle <span class="nowrap">B-frames</span> as reference frames</strong>, causing visual corruption during playback. This is usually because the computationally-intensive step of <a href="#deblocking">deblocking</a> during playback (see later section) is being performed "less fully" than it should be on <span class="nowrap">B-frames</span> (the majority of all frames) to save time, or sometimes even skipped altogether. As a result, the not-quite-properly-decoded <span class="nowrap">B-frames</span>
+ don't contain exactly the pixels the encoder expects them to (and the 
+H.264 format officially requires them to!), resulting in incorrect 
+visual results for any subsequent frames which reference <span class="nowrap">B-frames</span>, typically ugly smearing/tearing.</p>
+					<p>Sadly, the <span class="nowrap">Blu-ray</span> specification <em>doesn't</em> require <span class="nowrap">B-frames</span> to be supported as reference frames, even though that is part of the full H.264 specification, and as a result, some <span class="nowrap">Blu-ray</span> hardware decoders don't support it. Some software players also provide an option to reduce or turn off deblocking for <span class="nowrap">B-frames</span>
+ in order to improve performance. Thus, we cannot rely on that part of 
+the H.264 standard being reliably implemented, and must instead avoid 
+using <span class="nowrap">B-frames</span> as reference frames. Fortunately, the loss of quality caused by not using any <span class="nowrap">B-frames</span> as reference frames is fairly minor, as a similar <span class="nowrap">I/P-frame</span> is almost always available instead.</p>
+					<p><span class="heading">All:</span> off, for compatibility with bad players that don't apply proper deblocking to <span class="nowrap">B-frames.</span></p>
+					<h2><a id="pframeearlyskipdetection"></a>P-Frame Early Skip Detection <span class="option">(--fast-pskip)</span></h2>
+					<p>P-frame skip detection <strong>allows the encoder to skip consideration of macroblocks in <span class="nowrap">P-frames</span> at an early stage of processing if the change is extremely small.</strong> This speeds up encoding by about 20% on average, with <a href="http://birds-are-nice.me/publications/Testing_no-fast-pskip.html">practically no quality loss</a> in <a href="http://www.yuvsoft.com/pdf/x264_comparison.html">almost all cases using sane bitrates</a>. To quote one of the x264 programmers: "<span class="nowrap">no-fast-pskip</span>
+ does practically nothing. It is a placebo option, and if you think it 
+does something significant, your eyes are probably fooling you and you 
+should stop messing too much with settings you don't understand." x264's
+ default is therefore <span class="nowrap">P-frame</span> skip detection
+ turned on, although the x264Encoder QuickTime plug-in defaults to 
+having it turned off, probably from an old bug where <span class="nowrap">P-frame</span> skip detection was a little too aggressive and didn't handle blue sky areas well, a bug which has long since been fixed.</p>
+					<p><span class="heading">240p-1080p:</span> on (default).</p>
+					<p><span class="heading">1080p Superbit:</span> off, to ensure we capture every last tiny detail since this version acts as a long-term master for future re-encoding.</p>
+					<h2><a id="adaptivenumberofbframes"></a>Adaptive Number of B-Frames <span class="option">(--b-adapt)</span></h2>
+					<p>The x264 encoder supports using an <strong>adaptive number of <span class="nowrap">B-frames</span> rather than just a fixed pattern</strong>
+ like IBBPBBPBBPBB, and this setting controls that adaptive decision. 
+x264's default is a fast, simple algorithm (1), but it also supports a 
+slower, higher quality, "optimal" algorithm (2). The slow algorithm is 
+the default for the quality-oriented presets, including the x264Encoder 
+QuickTime plug-in's "optimized" presets. Strangely, the x264Encoder 
+QuickTime plug-in's iPod presets set this to 1 even though they use 
+baseline profile and therefore don't use <span class="nowrap">B-frames.</span></p>
+					<p><span class="heading">240p/360p:</span> 0 <span class="nowrap">(B-frames</span> disabled by baseline profile).</p>
+					<p><span class="heading">432p+:</span> 2 (slow, "optimal").</p>
+					<h2><a id="maximumnumberofbframes"></a>Maximum Number of B-Frames <span class="option">(--bframes)</span></h2>
+					<p>The x264 encoder will adaptively decide <a href="#adaptivenumberofbframes">when to use <span class="nowrap">B-frames</span> and how many</a> to use (see above), up to a given limit. <strong>Allowing longer sequences of consecutive <span class="nowrap">B-frames</span> is good for quality</strong> because <span class="nowrap">B-frames</span> are the most efficient frame type in terms of compression, but considering large numbers of <span class="nowrap">B-frames</span>
+ will slow down encoding significantly, with diminishing returns because
+ the encoder will rarely choose to actually use more than 4 or 5, with 
+1-3 being much more common.</p>
+					<p>Long sequences of <span class="nowrap">B-frames</span> also risk
+ a growing propagation of error, resulting in a gradual degradation of 
+quality followed by a slightly visible "pulse" when the video switches 
+back to a higher quality P- or <span class="nowrap">I-frame</span>. This is similar to the "keyframe pumping" smearing-then-pulse problem seen in the older <a href="http://www.divx.com/">DivX</a>/<a href="http://www.xvid.org/">XviD</a> codec (H.264's predecessor) during moderate-motion content encoded with very long sequences of <span class="nowrap">P/B-frames</span>
+ caused by an excessively long keyframe interval, although the DivX/XviD
+ problem is much more severe because the keyframe interval is typically 
+at least several seconds, not a fraction of a second, leaving much more 
+time for error-buildup smearing to occur, making the following "pulse" 
+jump in quality far more noticeable.</p>
+					<p>Note that with a setting of 2, about 67% of all frames will be <span class="nowrap">B-frames,</span>
+ with 3 that rises to a maximum of 75%, 4 to a maximum of 80%, and 5 to 
+around a maximum of 83% if the encoder was actually to frequently use 5 
+consecutive <span class="nowrap">B-frames,</span> which is unlikely. In other words, the <span class="nowrap">B-frame</span>
+ type dominates all other frame types in all cases 
+(IBBBPBBBPBBBPBBBPBBBPBBB), and this setting only increases it 
+relatively slightly as a percentage.</p>
+					<p>x264's default is a maximum of 3 <span class="nowrap">B-frames.</span> YouTube uses just 2 <span class="nowrap">B-frames,</span> presumably for faster encoding. <a href="http://www.streaminglearningcenter.com/">Jan Ozer</a>
+ recommends 2 or 3 (why 2? just encoding time?). Most of the x264 
+programmers recommend a higher setting when targeting maximum quality, 
+some as high as 8 or even 16, although that does slow down encoding a 
+lot for no real-world gain –&nbsp;an increase in the use of <span class="nowrap">B-frames</span> by less than 1% isn't enough to have a visible effect on quality. <strong>Some hardware decoders are known to have problems with long sequences of <span class="nowrap">B-frames</span></strong>, such as certain older ATI/NVIDIA GPUs and the NVIDIA <span class="nowrap">Tegra 2</span> processor used in many early Android phones and tablets.</p>
+					<p><span class="heading">240p/360p:</span> 0 <span class="nowrap">(B-frames</span> disabled by baseline profile, displayed as 1 in x264Encoder).</p>
+					<p><span class="heading">432p-1080p:</span> 3 (default), for compatibility with older ATI/NVIDIA GPUs and Android devices based on the <span class="nowrap">Tegra 2</span> processor, and possibly other hardware decoders with similar bugs (3 <span class="nowrap">B-frames</span> is a pretty "standard" setting, and a lot of people use it, so it should be very unlikely to break anything).</p>
+					<p><span class="heading">1080p Superbit:</span> 5, which is about as many as might ever be used in practice.</p>
+					<h2><a id="ratedistortionoptimization"></a>Rate-Distortion Optimization <span class="option">(--trellis)</span></h2>
+					<p><a href="http://en.wikipedia.org/wiki/Rate%E2%80%93distortion_optimization">Rate-distortion optimization</a> (aka: <a href="http://akuvian.org/src/x264/trellis.txt">trellis</a>)
+ is a slow but effective brute-force optimization technique which uses a
+ video quality metric to exhaustively measure both the distortion from 
+the original master and the actual cost in bits for each possible 
+choice, processed right through to final entropy encoding, <strong>essentially considering every possibility and choosing the best one according to cost-vs-benefit, as indicated by the RDO metric</strong> being used. x264 uses a very good, <a href="#psychovisualoptimization">"psycho-visual" RDO metric</a> by default (see below), but can also be instructed to use simpler metrics like <a href="http://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">PSNR</a> or <a href="http://en.wikipedia.org/wiki/Structural_similarity">SSIM</a>.</p>
+					<p>Rate-distortion optimization was originally targeted at optimizing quantization (<span class="option">--trellis=1</span>,
+ x264's default), but it can also be used from earlier in the encoding 
+pipeline, starting at motion-vector refinement and including macroblock 
+partitioning and block-type decisions (<span class="option">--trellis=2</span>).
+ Rate-distortion optimization was previously not supported for baseline 
+profile in x264, because it only worked with CABAC final entropy 
+encoding, but that's no longer the case in modern versions of x264.</p>
+					<p>Although RDO does select the optimal choice among the 
+possibilities for things such as macroblock partitioning and 
+quantization, the choice is only optimal in the <em>local</em> sense, 
+for just that one macroblock. It doesn't take into account the overall, 
+more global situation, including where and how that macroblock might be 
+referenced by other blocks in this frame or future frames. Thus, using 
+the term "optimal" for RDO is common but inaccurate. The RDO metric is 
+not a perfect match to human perception either, but even if it was, and 
+even if an exhaustive motion-vector search with infinite range was used,
+ RDO would still not guarantee a truly optimal encoding for even the 
+current frame, let alone the entire video. Nonetheless, RDO does produce
+ very good choices, probably close to optimal in most cases.</p>
+					<p><span class="heading">All:</span> 2 (on for motion-vector refinement, macroblock partitioning and quantization).</p>
+					<h2><a id="psychovisualoptimization"></a>Psycho-Visual Optimization <span class="option">(--psy-rd)</span></h2>
+					<p>One of x264's key advantages over other encoders is its use of psycho-visual optimization to improve <em>subjective</em> quality. Psycho-visual optimization <strong>tries to better match the human visual system's <em>perception and interpretation</em> of images.</strong>
+ The theory is that our brain is geared in such a way that it doesn't 
+simply want the image to look similar to the original, it wants the 
+image to feel like it has a similar level of complexity –&nbsp;otherwise
+ it looks "worse" even if it's technically closer to the original, 
+numerically speaking.</p>
+					<p>In other words, <strong>we humans would rather see a slightly 
+distorted but equally detailed area on an image than a non-distorted but
+ slightly blurred area.</strong> Thus, this optimization works by 
+altering the rate-distortion metric to de-emphasize blurry "low-error 
+but low-energy" choices during quantization, macroblock partitioning and
+ so on, rather than using simpler metrics like peak signal-to-noise 
+ratio (<a href="http://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">PSNR</a>) or structural similarity of images (<a href="http://en.wikipedia.org/wiki/Structural_similarity">SSIM</a>), which tend to lean towards less actual numeric pixel difference but too much blur.</p>
+					<p>The strength of the psycho-visual optimization effect can be 
+tuned from its default of 1.0, either increased up to around 1.5 to lean
+ towards even more detail, texture, film grain, and ultimately noise 
+artifacts, or decreased to around 0.5 to lean towards more smooth, flat,
+ and ultimately more blurry output. There is also a psycho-visual 
+trellis setting, which is currently disabled (default 0.0) because it's 
+still considered experimental, but which also should default to 1.0 when
+ activated in the future, and seems to work well both for <a href="http://forum.doom9.org/archive/index.php/t-141249.html">grainy film-based content</a> and for <a href="http://forum.doom9.org/archive/index.php/t-141188.html">clean computer graphics</a>.</p>
+					<p><span class="heading">All:</span> 1.0/1.0 (future default, probably).</p>
+					<h2><a id="dctbaseddecimation"></a>DCT-Based Decimation <span class="option">(--dct-decimate)</span></h2>
+					<p>DCT-based decimation allows the encoder to skip encoding blocks 
+it deems unnecessary based on a simple DCT threshold test, because the 
+residual to be encoded is very small, and therefore probably not 
+visually noticeable. This <strong>speeds up encoding by avoiding the 
+need to perform slow rate-distortion optimization on blocks which will 
+probably get no bits assigned to them anyway</strong>, and thus causes 
+very little quality loss in most cases. It also tends to stabilize areas
+ of the image that are changing in very minor ways, which can be a good 
+thing visually if those minor changes aren't "real".</p>
+					<p>Naturally, it's better for quality to let rate-distortion 
+optimization decide which blocks should be skipped or quantized more 
+aggressively by giving it all the blocks to consider, as RDO will 
+produce an "optimal" choice without relying on an arbitrary (even if 
+very good) threshold test, but DCT-based decimation can often increase 
+encoding speed very substantially with no visible quality loss, 
+especially in cases with stable backgrounds, like "talking head" shots.</p>
+					<p>Unfortunately, DCT-based decimation <strong>can occasionally cause skipping of subtle changes</strong>
+ during slow fades or very dark scenes, leading to banding or stepping 
+even at high bitrates. Film grain or camera sensor noise is usually 
+enough of a change that DCT-based decimation won't skip it, assuming the
+ resolution and bitrate are high enough to capture that level of detail,
+ but dark scenes where the grain is invisible, or <strong>very clean sources like computer graphics can be a problem</strong> for DCT-based decimation. x264's default is to have DCT-based decimation turned on.</p>
+					<p><span class="heading">All:</span> off, to preserve good slow fades in clean-source situations like computer graphics.</p>
+					<h2><a id="_4x4partitionsinpframes"></a>4x4 Partitions in P-Frames <span class="option">(--partitions p4x4)</span></h2>
+					<p>Taking the time to consider the possibility of using the small 
+4x4 macroblock partition sizes (4x4, 4x8 and 8x4) is known to be useful 
+in <span class="nowrap">I-frames</span> but of little benefit in <span class="nowrap">P-frames</span> (and not supported at all for <span class="nowrap">B-frames</span> in x264). It <strong>greatly slows down encoding for an insignificant gain in quality at most normal resolutions</strong>, although it <strong>can improve quality slightly at low resolutions if the bitrate is high enough</strong> to take advantage of it to capture more fine detail. To <a href="http://forum.doom9.org/archive/index.php/t-134205.html">quote one of the x264 developers</a>:
+ "Its (sic) pretty much useless except at relatively high bitrates, and 
+even then its only particularly helpful at low resolutions, and even 
+then its not that great." x264's default is not to consider 4x4 
+partitions in <span class="nowrap">P-frames.</span></p>
+					<p><span class="heading">240p/360p:</span> on, because we need 
+everything we can get at the very low resolutions/bitrates, especially 
+given we're stuck with H.264 baseline profile at those resolutions, and 
+the smaller block sizes might be slightly useful at low resolutions, 
+plus the encoding-time cost is still reasonable at low resolutions.</p>
+					<p><span class="heading">432p+:</span> off (default).</p>
+					<h2><a id="deblocking"></a>Deblocking <span class="option">(--deblock)</span></h2>
+					<p>Unlike earlier codecs, H.264 expects the player will perform 
+some form of deblocking during playback, blurring the edges of 
+macroblocks to avoid visible blocks in the final image (blur is less 
+noticeable to the human eye than false edges). In fact, <strong>while some good players for earlier codecs could <em>optionally</em> apply deblocking, H.264 actually <em>requires</em> it, taking advantage of that fact to improve overall compression</strong> significantly by using the <em>deblocked</em> frames as the reference frames for future P- and <span class="nowrap">B-frames.</span> Thus, H.264 is sometimes referred to as having "in-loop" deblocking, because <strong>it's a mandatory part of the official playback process</strong>, not an optional extra.</p>
+					<p>Deblocking is one of the more computationally-intensive parts of
+ H.264 playback, and while officially it can't be skipped or done "less 
+fully" to save time, <strong>some players perform lesser deblocking on <span class="nowrap">B-frames</span> (the majority of all frames), which is why those players don't support <a href="#bframesasreferenceframes">using <span class="nowrap">B-frames</span> as reference frames</a></strong> for other frames (see earlier section).</p>
+					<p>The strength and threshold of the deblock smoothing can be set during encoding...</p>
+					<ul>
+						<li><strong>Strength</strong>, also called alpha, controls the <strong>amount of smoothing</strong>
+ along the edges of blocks, with the default of 0 good for most 
+situations. Positive values up to about +2 apply more smoothing and 
+ultimately soften/blur the image, while negative values down to about -3
+ apply less smoothing and preserve more sharpness/detail, at the risk of
+ some visible blocking artifacts. Nothing below -3 should really be 
+considered.</li>
+						<li><strong>Threshold</strong>, also called beta, determines <strong>how flat the blocks must be in order for smoothing</strong> to be activated, with 0 a good default which rarely needs to be changed. The actual threshold calculation is complex –&nbsp;to <a href="http://forum.doom9.org/showthread.php?t=109747">quote an x264 developer</a>: "There is a threshold based on <span class="nowrap">[qp + 2*alpha]</span> and another threshold based on <span class="nowrap">[qp + 2*beta].</span>
+ The texture/gradient/whatever must pass both thresholds before any 
+filtering is applied." At most, the beta threshold should only be 
+changed very slightly, but a small change to -1 can improve overall 
+sharpness at the risk of some visible blocking.</li>
+					</ul>
+					<p><span class="heading">240p-1080p:</span> 0:0 (default).</p>
+					<p><span class="heading">1080p Superbit:</span> -2:-1, to preserve 
+as much sharpness as possible since we have a very high bitrate so 
+there's no risk of visible blocking artifacts.</p>
+					<p>PERFORMANCE: Reducing the amount of deblocking does improve the playback speed of notoriously slow software players, such as <span class="nowrap">QuickTime 7</span>
+ on Windows, but the difference is only modest, a few percent, even with
+ the beta threshold dropped to -2. Given the visual ugliness of blocking
+ artifacts, the widespread use of hardware-accelerated playback in 
+practice, and thinking long-term, a small gain in playback speed on 
+"bad" software players isn't worth it.</p>
+					<h2><a id="colorspacetagging"></a>Colorspace Tagging</h2>
+					<p>A color specified using simple numeric values such as <span class="nowrap">(175, 0, 0)</span> alone is actually somewhat ambiguous. Sure, it means <span class="nowrap">175/255ths</span> of maximum red, but of <em>what</em> maximum red? Its actual appearance will depend on the screen's brightness, <a href="http://en.wikipedia.org/wiki/Gamma_correction">gamma curve</a> (brightness response curve), color saturation, <a href="http://en.wikipedia.org/wiki/Gamut">color gamut</a> (overall color range), <a href="http://en.wikipedia.org/wiki/Color_temperature">color temperature</a> (warmth/coolness), <a href="http://en.wikipedia.org/wiki/White_point">white point</a> setting and so on. Thus, we are forced to use the <strong>notion of <a href="http://en.wikipedia.org/wiki/Colorspace">colorspaces</a>, saved in files known as color profiles</strong>,
+ which should be used to tag all photographically-oriented images and 
+videos, so they can be displayed correctly and look more-or-less the 
+same on different screens.</p>
+					<aside><div class="sidebarleft">
+						<p>The main exception to colorspace tagging is images used on web sites, where you should convert the images to the web's standard <a href="http://en.wikipedia.org/wiki/Srgb">sRGB colorspace</a>, and <em>not</em>
+ embed a color profile, in order to guarantee consistent colors in web 
+browsers that aren't colorspace-aware, as well as to reduce file size 
+(embedding a color profile adds an extra <span class="nowrap">2-10k,</span>
+ which is a lot of overhead for small web images). For the web, you can 
+rely on the assumption the colorspace of the user's screen is 
+approximately sRGB with a gamma of 2.2, or some reasonably balanced 
+superset of that. You cannot assume web browsers are colorspace-aware, 
+since most are not.</p>
+					</div></aside>
+					<p>Colorspace and/or gamma tagging for video files inserts a <em>colr</em> (modern) or <em>gama</em> (old, deprecated) tag into the output QuickTime file's header, and <strong>a <em>VUI</em> parameter into the actual H.264 bitstream itself</strong>,
+ to indicate the file's colorspace. Modern, colorspace-aware video 
+player applications can then accurately map the file's colors and 
+brightness levels to the playback screen in order to display the video 
+so it looks more-or-less the same as you intended, and the same on 
+different screens.</p>
+					<p>Gamma-only tagging is now obsolete and not supported by the VUI 
+parameter of the H.264 format, and any QuickTime-level gamma tagging is 
+lost in the conversion to the <a href="http://www.lighterra.com/mp4ify/">recommended .mp4 container file</a> format, so only modern colorspace tagging is relevant nowadays.</p>
+					<p>Modern video-file colorspace tagging uses <strong>3 numbers, each an index into a table of known broadcast standards:</strong>
+ the RGB color primaries to define what exactly "red", "green" and 
+"blue" really are; the transfer function (the modern equivalent of 
+gamma); and a conversion matrix. Together, these form a "non-constant 
+luminance coding", or <a href="http://developer.apple.com/quicktime/icefloe/dispatch019.html">NCLC</a>.</p>
+					<p>Unfortunately, many current video player applications don't 
+respect colorspace tagging, including Flash, Windows Media Player (most 
+configurations, sometimes overridden by GPU drivers), VLC and MPlayer, 
+all of which simply send the colors through either numerically unchanged
+ or using their own, internal, usually fixed and usually "unique" 
+color/gamma correction.</p>
+					<aside><div class="sidebarright">
+						<p>The widespread missing colorspace-awareness functionality in 
+video player applications is the main cause of the many articles about 
+"QuickTime's gamma bug", which is ironic since QuickTime Player is one 
+of the few players that <em>does</em> respect colorspace and gamma tagging. The "bug" is actually more a lack of configurability, because the QuickTime H.264 <em>encoder</em> tags all SD-sized encodes with the <span class="nowrap">SMPTE-C</span> colorspace (NCLC <span class="nowrap">6-1-6),</span> and all HD-sized encodes with the HDTV colorspace (NCLC <span class="nowrap">1-1-1),</span> with QuickTime performing color <em>conversion</em> as required during the export, so that they end up looking the same <em>in a colorspace-aware player</em>,
+ but different in a player which ignores the colorspace tagging! The 
+QuickTime H.264 encoder should provide an option to set the output 
+file's colorspace explicitly (as x264Encoder does), but sadly it doesn't
+ – the tag itself can be changed by other tools after-the-fact, but the 
+colors will already have been converted into the new colorspace. 
+Nevertheless, QuickTime Player and the QuickTime plug-in are actually 
+doing the "right thing" by respecting the tagging during playback. It's 
+just the rest of the world is doing the wrong thing, including some of 
+Apple's other applications.</p>
+					</div></aside>
+					<p>After a considerable amount of experimentation with a variety of
+ player applications, on a variety of different operating systems, 
+phones, tablets and standalone TV screens, and after <a href="http://bitfilms.blogspot.com.au/2011/08/final-cut-exports-look-different-from.html">lots</a> and <a href="http://www.glennchan.info/articles/technical/hd-versus-sd-color-space/hd-versus-sd-color-space.htm">lots</a> and <a href="http://www.poynton.com/notes/misc/sde-nclc-vui-nclx.html">lots</a> of <a href="http://developer.apple.com/quicktime/icefloe/dispatch019.html">reading</a> on the <a href="http://developer.apple.com/library/mac/#technotes/tn2227/_index.html">subject</a>, there are only 3 colorspace taggings which really matter...</p>
+					<ul>
+						<li><strong>No tagging</strong> (default) declares nothing about 
+the video file's colorspace, and leaves it at the mercy of the video 
+player application's whims, which isn't a great idea, even though that's
+ going to be the case for many players anyway since many ignore 
+colorspace tagging.</li>
+						<li><strong><span class="nowrap">SMPTE-C</span> colorspace (NCLC <span class="nowrap">6-1-6)</span></strong> is the current version of the <strong>old NTSC standard-definition TV colorspace</strong>, also known as <a href="http://www.itu.int/rec/R-REC-BT.601/">"recommendation 601"</a>.
+ It has an official white point of D65 (6500K) and a gamma of 2.2, 
+although most consumer NTSC CRTs were usually somewhat darker with a 
+gamma of 2.3-2.5 in practice (even good ones). As a result, many older 
+player applications that aren't colorspace-aware will assume video is 
+encoded expecting a gamma of around 2.3-2.5, and if the screen isn't 
+that dark (or the player simply assumes the screen's gamma is 2.2) the 
+player will darken the video to (incorrectly) compensate – so 
+colorspace-unaware players will often show video a little darker than 
+they should.</li>
+						<li><strong>HDTV colorspace (NCLC <span class="nowrap">1-1-1)</span></strong> is the colorspace standard for <strong>modern high-definition content and screens</strong>, also known as <a href="http://www.itu.int/rec/R-REC-BT.709/">"recommendation 709"</a>. Like <span class="nowrap">SMPTE-C,</span>
+ it has an official white point of D65 (6500K) and the gamma is 
+approximately 2.2 overall, though it contains a small linear section 
+near black. This time around, however, the gamma of 2.2 is actually 
+mostly reflected <em>in practice</em> on good LCD/plasma screens, 
+allowing better shadow detail. HDTV also defines slightly different, 
+slightly better red/green/blue color primaries, allowing for slightly 
+more saturated colors. The HDTV colorspace has a very well-specified 
+sibling in the form of the standard <a href="http://en.wikipedia.org/wiki/Srgb">sRGB colorspace</a>,
+ which uses the same red/green/blue color primaries and white point as 
+HDTV, with roughly the same approximate gamma of 2.2 (though there are 
+some minor, largely insignificant differences in the precise gamma 
+curves).</li>
+					</ul>
+					<p>It's important to note <strong>the <span class="nowrap">SMPTE-C</span> and HDTV colorspaces are slightly different</strong>, and in fact different enough to be clearly visible when viewed side-by-side or flipped between (you can <a href="http://www.glennchan.info/articles/technical/hd-versus-sd-color-space/hd-versus-sd-color-space.htm">read a brief summary</a> of the differences, or <a href="http://www.poynton.com/PDFs/coloureq.pdf">more detailed coverage</a>). Nonetheless, it's safe to assume <strong>most modern TV screens aspire to match the HDTV/sRGB colorspace</strong> as closely as possible, and assume older <span class="nowrap">SMPTE-C</span>
+ content will map acceptably to the new colorspace – at worst it would 
+look a little washed out (what was that joke about NTSC meaning "never 
+the same color" again?).</p>
+					<p>Modern computer screens are not as well standardized, but are 
+based on the same technology as LCD HDTVs. All of the major operating 
+systems recommend a gamma of 2.2, although the exact value will vary 
+slightly based on the screen's actual color profile. The red/green/blue 
+primaries and <strong>color gamuts of computer screens vary quite considerably</strong>,
+ and the color gamut is often somewhat worse than HDTVs, at least good 
+ones, due to the constraints of embedding a good screen with a good 
+backlight into a thin, light laptop enclosure. Again, however, it's safe
+ to assume <strong>most computer screens attempt to more-or-less match the HDTV/sRGB colorspace.</strong>
+ Most phones and tablets also attempt to adhere to an approximate gamma 
+of 2.2 and similar color primaries to HDTV/sRGB, although once again 
+there's considerable variability among real-world devices.</p>
+					<p><span class="heading">All:</span> HDTV (NCLC <span class="nowrap">1-1-1),</span> keeping in mind some players and screens will display the video a little more darkly.</p>
+				</div>
+			</div></article>
+			
+			
+			<nav><div id="breadcrumbs">
+				<p>
+					<a href="http://www.lighterra.com/">Lighterra</a> / <a href="http://www.lighterra.com/articles/">Articles &amp; Papers</a> / <a href="#">Video Encoding Settings for H.264 Excellence</a>
+				</p>
+			</div></nav>
+			
+			
+			<div id="footerbg"></div>
+			<footer><div id="footer"><nav><section>
+				<div id="footercol1">
+					<h6><a href="http://www.lighterra.com/jason/">About</a></h6>
+					<a href="http://www.lighterra.com/jason/"><img src="Video%20Encoding%20Settings%20for%20H.264%20Excellence_files/jason4thumb.jpg" srcset="/jason/jason4thumb_2x.jpg 2x" alt="" width="48" height="48"></a>
+					<p>Lighterra is the software company of <a href="http://www.lighterra.com/jason/">Jason Robert Carey Patterson</a>, a systems programmer with interests centered around performance and the hardware/<wbr>software
+ interface, such as the design of new programming languages and 
+compilers, optimization algorithms to make code run faster, chip design 
+and microarchitecture, and parallel programming across many processor 
+cores, GPUs and network clusters.</p>
+				</div>
+				<div id="footercol2">
+					<h6><a href="http://www.lighterra.com/software/">Software</a></h6>
+					<ul>
+						<li><a href="http://www.lighterra.com/vgo/">VGO - Very Global Optimizer</a></li>
+						<li><a href="http://www.lighterra.com/threads++/">Threads++</a></li>
+						<li><a href="http://www.lighterra.com/istring/">istring</a></li>
+						<li><a href="http://www.lighterra.com/memory++/">Memory++</a></li>
+						<li><a href="http://www.lighterra.com/timerz/">Timerz</a></li>
+						<li><a href="http://www.lighterra.com/embedvideo/">EmbedVideo</a></li>
+						<li><a href="http://www.lighterra.com/software/">more...</a></li>
+					</ul>
+				</div>
+				<div id="footercol3">
+					<h6><a href="http://www.lighterra.com/articles/">Articles</a></h6>
+					<ul>
+						<li><a href="http://www.lighterra.com/papers/modernmicroprocessors/">Modern Microprocessors - A <span class="nowrap">90-Minute</span> Guide!</a></li>
+						<li><a href="http://www.lighterra.com/articles/historyofcomputers/">The History of Computers During My Lifetime</a></li>
+						<li><a href="http://www.lighterra.com/papers/videoencodingh264/">Video Encoding Settings for H.264 Excellence</a></li>
+						<li><a href="http://www.lighterra.com/papers/exceptionsharmful/">Exception Handling Considered Harmful</a></li>
+						<li><a href="http://www.lighterra.com/papers/valuerangeprop/">Accurate Static Branch Prediction by Value Range Propagation</a></li>
+						<li><a href="http://www.lighterra.com/articles/">more...</a></li>
+					</ul>
+				</div>
+				<hr class="clear">
+				<p class="copyright">
+					Copyright © 2012-2019 Lighterra. All rights reserved.
+				<br>
+				<a href="http://www.lighterra.com/about/contact.html">Contact</a> &nbsp;|&nbsp; <a href="http://www.lighterra.com/legal/privacy.html">Privacy</a> &nbsp;|&nbsp; <a href="http://www.lighterra.com/legal/">Legal</a></p>
+			</section></nav></div></footer>
+		</div>
+	</div>
+</div>
+
+
+</body></html>
