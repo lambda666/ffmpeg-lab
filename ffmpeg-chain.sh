@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #start ffserver
-ffserver -d -f /etc/ffserver.conf >> /dev/null & \
+ffserver -f /etc/ffserver.conf >> /dev/null & \
 
 #run 3 ffmpeg, they transfer data to each other via pipe
 
