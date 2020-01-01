@@ -11,15 +11,13 @@ class MP4Frag():
 	_MP4A = bytes([0x6d, 0x70, 0x34, 0x61])# mp4a
 	_AVCC = bytes([0x61, 0x76, 0x63, 0x43])# avcC
 	def __init__(self, pipe):
-		self._init = None
-		self._ftyp = None
-		self._moov = None
 		self._parseChunk = self._findFtyp
 		self._rpipe = pipe
 		self._pipe,self._wpipe = Pipe(duplex=True)
 		self._process = Process(target=self._proc, name = "mp4frag")
 	def _int(self, data):
-		return int(data.hex(), 16)
+		#return int(data.hex(), 16)
+		return int.from_bytes(data,byteorder='big',signed=False)
 	def _str(self, data):
 		return data.decode('utf-8')
 	def pipe(self):
@@ -33,7 +31,15 @@ class MP4Frag():
 	def _transform(self):
 		chunk = self._rpipe.read()
 		self._parseChunk(chunk)
-	
+
+	def _bsconcate(self, li, leng):
+		res = bytes()
+		for	i in li:
+			res += i
+		if leng > len(res):
+			return res
+		return res[:leng]
+
 	def _findFtyp(self, chunk):
 		chunkLength = len(chunk)
 		if (chunkLength < 8 or chunk.find(MP4Frag._FTYP) != 4):
@@ -70,14 +76,8 @@ class MP4Frag():
 		else:
 			print("error: can not find moov")
 
-	def _bsconcate(self, li, len):
-		res = bytes()
-		for	i in li:
-			res += i
-		return res[:len]
-
 	def _findMoof(self, chunk):
-		if (hasattr(MP4Frag, _moofBuffer)):
+		if (hasattr(self, '_moofBuffer')):
 			self._moofBuffer.append(chunk)
 			chunkLength = len(chunk)
 			self._moofBufferSize += chunkLength
@@ -120,6 +120,65 @@ class MP4Frag():
 				self._moofBuffer = [chunk]
 				self._moofBufferSize = chunkLength
 
+	def _findMdat(self, chunk):
+		if (hasattr(self, '_mdatBuffer')):
+			self._mdatBuffer.append(chunk)
+			chunkLength = len(chunk)
+			self._mdatBufferSize += chunkLength
+			if (self._mdatLength == self._mdatBufferSize):
+				self._setSegment(self._bsconcate([self._moof].expend(self._mdatBuffer), self._moofLength + self._mdatLength))
+				del self._moof
+				del self._mdatBuffer
+				del self._mdatBufferSize
+				del self._mdatLength
+				del self._moofLength
+				self._parseChunk = self._findMoof
+			elif (self._mdatLength < self._mdatBufferSize):
+				self._setSegment(self._bsconcate([self._moof].expend(self._mdatBuffer), self._moofLength + self._mdatLength))
+				sliceIndex = chunkLength - (self._mdatBufferSize - self._mdatLength)
+				del self._moof
+				del self._mdatBuffer
+				del self._mdatBufferSize
+				del self._mdatLength
+				del self._moofLength
+				self._parseChunk = self._findMoof
+				self._parseChunk(chunk[sliceIndex:])
+		else:
+			chunkLength = len(chunk)
+			if (chunkLength < 8 or chunk.find(MP4Frag._MDAT) != 4):
+				print("error: mdat no found")
+				return
+			self._mdatLength = self._int(chunk[:4])
+			if (self._mdatLength > chunkLength):
+				self._mdatBuffer = [chunk]
+				self._mdatBufferSize =chunkLength
+			elif (self._mdatLength < chunkLength):
+				self._setSegment(self._bsconcate([self._moof, chunk], self._moofLength + chunkLength))
+				del self._moof
+				del self._moofLength
+				del self._mdatLength
+				self._parseChunk = self._findMoof
+			else:
+				self._setSegment(self._bsconcate([self._moof, chunk], self._moofLength + self._mdatLength))
+				sliceIndex = self._mdatLength
+				del self._moof
+				del self._moofLength
+				del self._mdatLength
+				self._parseChunk = self._findMoof
+				self._parseChunk(chunk[sliceIndex:])
+
+	def _moofHunt(self, chunk):
+		if (self._moofHunts < self._moofHuntsLimit):
+			self._moofHunts += 1
+			index = chunk.find(MP4Frag._MOOF)
+			if (index > 3 and len(chunk) > index + 3):
+				del self._moofHunts
+				del self._moofHuntsLimit
+				self._parseChunk = self._findMoof
+				self._parseChunk(chunk[index - 4:])
+		else:
+			print("error: ")
+
 	def _parseMoov(self, chunk):
 		self._initialization = chunk
 		audioString = ''
@@ -134,8 +193,8 @@ class MP4Frag():
 			self._initialization[index:index + 3].hex().upper(), \
 			audioString \
 		)
-		self._timestamp = time.asctime(time.localtime(time.time()))
-		if (hasattr(MP4Frag, _hlsList) and hasattr(MP4Frag, _hlsListInit)):
+		self._timestamp = int(round(time.time() * 1000))
+		if (hasattr(self, '_hlsList') and hasattr(self, '_hlsListInit')):
 			m3u8 = '#EXTM3U\n'
 			m3u8 += '#EXT-X-VERSION:7\n'
 			#m3u8 += '#EXT-X-ALLOW-CACHE:NO\n'
@@ -144,3 +203,22 @@ class MP4Frag():
 			m3u8 += '#EXT-X-MAP:URI="init-%s.mp4"\n'%self._hlsBase
 			self._m3u8 = m3u8
 
+	def _setSegment(self, chunk):
+		self._segment = chunk
+		currentTime = int(round(time.time() * 1000))
+		self._duration = max((currentTime - self._timestamp)/1000, 1)
+		self._timestamp = currentTime
+		if (hasattr(self, '_hlsList')):
+			self._sequence += 1
+			self._hlsList.append({'sequence': self._sequence,
+				'name':'%s%d'%(self._hlsBase, self._sequence),
+				'segment':self._sequence,
+				'duration':self._duration})
+			while (len(self._hslist) > self._hlsListSize):
+				self._hslist.pop(index=0)
+			m3u8 = '#EXTM3U\n';
+			m3u8 += '#EXT-X-VERSION:7\n';
+			#m3u8 += '#EXT-X-ALLOW-CACHE:NO\n';
+			m3u8 += '#EXT-X-TARGETDURATION:%d\n'%Math.round(this._duration)
+			m3u8 += '#EXT-X-MEDIA-SEQUENCE:%d\n'%this._hlsList[0].sequence
+			m3u8 += '#EXT-X-MAP:URI="init-%s.mp4"\n'%this._hlsBase
